@@ -1,0 +1,468 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>年賀状CTF2016 (by @_N4NU_) writeup by Bono-iPad</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-71952117-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/Bono-iPad">View On GitHub</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Bono_iPad@github.io</h1>
+          <p>年賀状CTF2016 (by @_N4NU_) writeup</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/Bono-iPad">Bono-iPad</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a id="年賀状ctf2016-by-n4nu-writeup" class="anchor" href="#%E5%B9%B4%E8%B3%80%E7%8A%B6ctf2016-by-n4nu-writeup" aria-hidden="true"><span class="octicon octicon-link"></span></a>年賀状CTF2016 (by @_N4NU_) writeup</h1>
+
+<p>　先日、ふるかわ（<a href="https://twitter.com/_N4NU_" class="user-mention">@_N4NU_</a>）さん作成の年賀状CTFを解きました。<br>
+　年末年始にかけて泊まり仕事だったので、問題を見た時には、すでにakiym（<a href="https://twitter.com/akiym" class="user-mention">@akiym</a>）さんがAmazonコードを獲得した後でした。<br>
+　「賞金もなくなったようだし、ちょっと覗くくらいにしておこうか……」と軽い気持ちで始めたのですが、やってみるとかなり面白い問題で、一気に最後まで解いてしまいました。ふるかわ（<a href="https://twitter.com/_N4NU_" class="user-mention">@_N4NU_</a>）さんの許可も頂きましたので、writeupを公開します。  </p>
+
+<h2>
+<a id="完全なネタバレになっています" class="anchor" href="#%E5%AE%8C%E5%85%A8%E3%81%AA%E3%83%8D%E3%82%BF%E3%83%90%E3%83%AC%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99" aria-hidden="true"><span class="octicon octicon-link"></span></a>完全なネタバレになっています。</h2>
+
+<h2>
+<a id="自力で解きたいという方は以下ご覧にならないようお願いします" class="anchor" href="#%E8%87%AA%E5%8A%9B%E3%81%A7%E8%A7%A3%E3%81%8D%E3%81%9F%E3%81%84%E3%81%A8%E3%81%84%E3%81%86%E6%96%B9%E3%81%AF%E4%BB%A5%E4%B8%8B%E3%81%94%E8%A6%A7%E3%81%AB%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84%E3%82%88%E3%81%86%E3%81%8A%E9%A1%98%E3%81%84%E3%81%97%E3%81%BE%E3%81%99" aria-hidden="true"><span class="octicon octicon-link"></span></a>自力で解きたい、という方は、以下、ご覧にならないようお願いします。</h2>
+
+<h2>
+<a id="menu" class="anchor" href="#menu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Menu:</h2>
+
+<p><a href="#start">はじめに</a><br>
+<a href="#stage1">Stage 1</a><br>
+<a href="#stage2">Stage 2</a><br>
+<a href="#stage3">Stage 3</a>  </p>
+
+<hr>
+
+<h2>
+<a id="-はじめに" class="anchor" href="#-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="start"> はじめに</a>
+</h2>
+
+<p></p><blockquote lang="ja">
+<p lang="ja" dir="ltr">年賀状CTF公開！！！　はてなブログに投稿しました <a href="https://twitter.com/hashtag/%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0?src=hash">#はてなブログ</a>
+年賀状CTF（お年玉付き） - WTF!?
+<a href="https://t.co/wiWOXHn4E6"></a><a href="https://t.co/wiWOXHn4E6">https://t.co/wiWOXHn4E6</a></p>— ふるかわ (<a href="https://twitter.com/_N4NU_" class="user-mention">@_N4NU_</a>) <a href="https://twitter.com/_N4NU_/status/682580813871845377">2015, 12月 31</a>
+</blockquote> 
+
+<p>　2016年1月1日午前0時15分、上記ツイートから問題が公開されました。<br>
+　ツイートされたブログ記事には、問題ファイルへのリンクが貼ってあります。<br>
+　問題ファイルはdropboxに置かれているwc16g_tf_0003.pngという名前のPNGファイル（ <a href="https://www.dropbox.com/s/ptv100otuapnt38/wc16g_tf_0003.png?dl=0">https://www.dropbox.com/s/ptv100otuapnt38/wc16g_tf_0003.png?dl=0</a> ）で、内容は年賀状の画像です。<br>
+　バイナリエディタで覗いてみると、IENDチャンクの後ろにかなり長いデータが付いていることが分かります。（0x33eb51以降）
+　これを切り取ってfileコマンドで調べると、</p>
+
+<pre><code>gzip compressed data, from Unix, last modified: Thu Dec 31 23:26:13 2015
+</code></pre>
+
+<p>　なるほど。<br>
+　解凍すると、ファイルが出現します。これをfileコマンドにかけると、  </p>
+
+<pre><code>POSIX tar archive
+</code></pre>
+
+<p>　展開すると、stage1というフォルダが出現します。<br>
+　CTF開始です。</p>
+
+<h2>
+<a id="-stage-1" class="anchor" href="#-stage-1" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="stage1"> stage 1</a>
+</h2>
+
+<p>　stage1フォルダの中には「stage1.pyc」と「stage2.tar.gz.gpg」の２つのファイルが入っています。<br>
+　どうやらstage2に行くためには、stage1.pycの謎を解く必要がありそうです。<br>
+　「.pyc」の拡張子から分かる通り、stage1.pycはpythonのバイトコードファイルです。そのままではちょっと読めません。<br>
+　色々な手法がありますが、今回はuncompyle2（ <a href="https://github.com/wibiti/uncompyle2">https://github.com/wibiti/uncompyle2</a> ）を使って、元のpythonコードを取得しました。<br>
+　取得できたコードはこちら。  </p>
+
+<pre><code>import sys
+from os.path import getsize, basename
+try:
+    from PIL import Image
+except ImportError:
+    import Image
+
+if len(sys.argv) &lt; 3:
+    sys.stderr.write('Usage: {0:s} png_file message\n'.format(sys.argv[0]))
+    sys.exit(1)
+im = Image.open(sys.argv[1])
+width, height = im.size
+message = sys.argv[2]
+for i in xrange(len(message)):
+    pix = list(im.getpixel((i % width, i / width)))
+    pix[i % 4] ^= ord(message[i])
+    im.putpixel((i % width, i / width), tuple(pix))
+
+im.save(basename(sys.argv[1]).split('.')[0].encode('rot13') + '.png')
+</code></pre>
+
+<p>　どうやら、このコードを使ってpngファイルにメッセージを書き込んだようです。具体的には、左上のpixelから、元のpixelのRGBAの値と、メッセージのASCIIコード値をxor演算することによって、メッセージを画像内に書き込んだようです。しかし、全てのRGBAの値がxorされる訳ではなく、1 pixelごとに「赤・緑・青・アルファチャンネル・赤・緑……」と、xorされる部分が変化しています。<br>
+　メッセージを書き込んだ画像は、恐らく最初の問題ファイルwc16g_tf_0003.pngでしょう。よく見ると、画像の左上にメッセージを書き込んだ形跡が見えます。（何となく虹色に見える部分）<br>
+　しかし、ここからが問題。どうやってメッセージを取り出すか？<br>
+　隣接pixelとの比較では、どうやら色調が少し変わっているようで、無意味なメッセージしか抽出できません。<br>
+　ここで、なぜかファイル名をrot13している点に注目します。ファイル名を知られたくない理由があるのでしょうか？<br>
+　迷ったらGoogle、ということで、「wc16g_tf_0003」をrot13した「jp16t_gs_0003」をGoogle検索すると、下記のページがひっかかります。<br>
+　（ <a href="https://yoshizen.wordpress.com/tag/new-years-card/">https://yoshizen.wordpress.com/tag/new-years-card/</a> ）<br>
+　ここには、まさに年賀状画像と同じ画像があります。しかし、ファイルはjpeg、これでは復号には使えません。<br>
+　ページをよく読むと、「The card samples here are from Japan Post」と書いてあり、郵便年賀.jp（ <a href="http://yubin-nenga.jp/search/">http://yubin-nenga.jp/search/</a> ）へのリンクが貼られています。<br>
+　郵便年賀.jpのページをよく探すと、元ファイル（jp16t_gs_0003.png）が見つかります。これを使って、以下のようなコードで復号します。  </p>
+
+<pre><code>import sys
+from os.path import getsize, basename
+try:
+    from PIL import Image
+except ImportError:
+    import Image
+
+im = Image.open(sys.argv[1])
+im2 = Image.open(sys.argv[2])
+width, height = im.size
+ans = ""
+
+for i in xrange(100): # assume len(message) = 50
+    pix = list(im.getpixel((i % width, i / width)))
+    q = pix[i % 4]
+    pix = list(im2.getpixel((i % width, i / width)))
+
+    r = pix[i % 4]
+    ans = ans + chr(q^r)
+
+print ans
+</code></pre>
+
+<p>　実行すると、</p>
+
+<pre><code>$ python stage1.py wc16g_tf_0003.png jp16t_gs_0003.png
+Congratz!!! Password: D3c0mpilin6_4nd_R3v3rs1n6_pyc_15_700_345y
+</code></pre>
+
+<p>　このパスワードでgpgを復号できます。これにより、stage2.tar.gzが抽出されます。<br>
+　いよいよstage 2です。  </p>
+
+<h2>
+<a id="-stage-2" class="anchor" href="#-stage-2" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="stage2"> stage 2</a>
+</h2>
+
+<p>　stage2フォルダの中には「LifeGame.html」があり、これを開くとライフゲームが始まります。<br>
+　LifeGame.htmlのソースを見ると、単にmain.jsを実行しているだけということが分かります。問題のmain.jsはきつく難読化がかけられており、そのままでは読めません。解読が必要です。では、どのような難読化がかけられているのか？どうやって解読するか？これがstage 2最初の関門です。  </p>
+
+<p>　JavaScriptの難読化については、はせがわようすけさんのスライド（ <a href="http://www.slideshare.net/hasegawayosuke/javascript-51570525">http://www.slideshare.net/hasegawayosuke/javascript-51570525</a> ）が詳しいです。これを読んで考えると、恐らくmain.jsはjjencodeで難読化したあと、さらにpackerをかけたものと考えられます。<br>
+　方法は色々ありますが、今回、私はFireBugを使いました。<br>
+　何のことはなく、ライフゲームを開いた状態でFireBugのスクリプトタグを開くと、難読化が解除された状態のスクリプトが表示されます。これをコピペしてエディタに貼り付け、解析します。<br>
+　スクリプトを色々検索してみると、print_flagという文字列が目にとまります。  </p>
+
+<pre><code>c_World.prototype.p_print_flag=function(){
+    var t_f=[207,254,234,234,142,150,114,155,197,161,205,206,185,51,30,134,203,178,68,94,49,202,160,223,204,209,190];
+    for(var t_i=0;t_i&lt;t_f.length;t_i=t_i+1){
+        var t_s=0;
+        for(var t_j=0;t_j&lt;8;t_j=t_j+1){
+            t_s+=this.p_GetCell(t_i+1,t_j+6).m_status&lt;&lt;7-t_j;
+        }
+        t_f[t_i]^=t_s;
+    }
+    print(string_fromchars(t_f));
+}
+</code></pre>
+
+<p>　どうやら、このルーチンでflagを生成しているようです。<br>
+　これは  </p>
+
+<pre><code>if(this.m_map.p_is_collect()){
+this.m_map.p_print_flag();
+}
+</code></pre>
+
+<p>　で実行されます。is_collectで何をしているかを読むために、関連する部分を抜き出してみます。  </p>
+
+<pre><code>c_World.prototype.p_GetCell=function(t_col,t_row){
+    if(t_col&lt;this.m_cols &amp;&amp; t_col&gt;=0 &amp;&amp; t_row&lt;this.m_rows &amp;&amp; t_row&gt;=0){
+        return this.m_grid[t_row*this.m_cols+t_col];
+    }
+    return null;
+}
+
+c_World.prototype.p_is_collect=function(){
+    var t_collect=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,251,241,143,199,239,206,63,1,179,120,192,6,204,99,1,251,49,143,199,236,198,63,24,51,24,204,96,204,99,49,251,247,239,199,239,223,191,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    for(var t_i=0;t_i&lt;this.m_grid.length;t_i=t_i+1){
+        if(((!((t_collect[((t_i/8)|0)]&gt;&gt;7-t_i % 8&amp;1)!=0))?1:0)==this.m_grid[t_i].m_status){
+            return false;
+        }
+    }
+    return true;
+}
+
+this.m_grid=new_object_array(t_cols*t_rows);
+
+this.m_map=c_World.m_new.call(new c_World,30,20);
+</code></pre>
+
+<p>　要は、ライフゲームがある特定の状況になると、マップの状態を元にflagが生成されるということのようです。<br>
+　マップの状態はm_gridに保存されており、これを元にp_print_flagでflagが生成されます。正しいm_gridを生成し、それを元にしてflagを生成するpythonコードを書くと、以下のようになります。  </p>
+
+<pre><code>data = [207,254,234,234,142,150,114,155,197,161,205,206,185,51,30,134,203,178,68,94,49,202,160,223,204,209,190]
+
+c = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,251,241,143,199,239,206,63,1,179,120,192,6,204,99,1,251,49,143,199,236,198,63,24,51,24,204,96,204,99,49,251,247,239,199,239,223,191,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+grid = [0]*600
+
+# make correct grid
+for a in range(0,600):
+  x = c[a/8] &gt;&gt; ((7-a)%8)
+  x = x &amp; 1
+  grid[a] = x
+print grid
+for a in range(len(data)):
+  s = 0
+  for b in range(0,8):
+    s += (grid[ (b+6) * 30 + (a+1)] &lt;&lt; (7-b) )
+  data[a] ^= s
+
+print "%r" % "".join(map(chr,data))
+</code></pre>
+
+<p>　これを実行すると、  </p>
+
+<pre><code>'Password: L1F3_G4ME_15_FUN!'
+</code></pre>
+
+<p>　これにより、「stage3.gz.gpg」より「stage3.gz」が生成されます。<br>
+　いよいよ最終問題です。  </p>
+
+<h2>
+<a id="-stage-3" class="anchor" href="#-stage-3" aria-hidden="true"><span class="octicon octicon-link"></span></a><a name="stage3"> stage 3</a>
+</h2>
+
+<p>　「stage3.gz」からは「stage3」というファイルが解凍されます。  </p>
+
+<pre><code>ELF 32-bit LSB  executable, Intel 80386, version 1 (GNU/Linux), statically linked, stripped
+</code></pre>
+
+<p>　ということで、ELFバイナリの解析です。<br>
+　普通に実行してみると、  </p>
+
+<pre><code>$ ./stage3
+Usage: ./stage3 flag
+$ ./stage3  123
+Invalid. Try again.
+</code></pre>
+
+<p>　どうやら、正しいflagを引数に入れる必要があるようです。<br>
+　実行ファイルをテキストエディタで開いてみると「UPX!」という文字が目に入ります。どうやら、UPXでパックされたバイナリのようです。<br>
+　では、ということで解凍してみようとすると、  </p>
+
+<pre><code>stage3: CantUnpackException: header corrupted 2
+</code></pre>
+
+<p>　あれ？<br>
+　どうやら、何らかの工作が施され、UPXの解凍ができなくなっているようです。<br>
+　gdbで実行してEntryPointで処理を止め、i proc mapを実行しメモリ配置を確認すると、  </p>
+
+<pre><code>    Start Addr   End Addr       Size     Offset objfile
+      0xc01000   0xc46000    0x45000        0x0 ./stage3
+     0x80ec000  0x80ed000     0x1000        0x0 ./stage3
+    0xf7ffb000 0xf7ffc000     0x1000        0x0 [vdso]
+    0xf7ffc000 0xf7ffe000     0x2000        0x0 [vvar]
+    0xfffdd000 0xffffe000    0x21000        0x0 [stack]
+</code></pre>
+
+<p>　ここで、一度pin（ <a href="https://software.intel.com/en-us/articles/pin-a-dynamic-binary-instrumentation-tool">https://software.intel.com/en-us/articles/pin-a-dynamic-binary-instrumentation-tool</a> ）を使ってitraceを取って、その最後の方を見てみます。(pin toolについての詳細はここでは省きます)  </p>
+
+<pre><code>$ sudo ./pin -t './source/tools/ManualExamples/obj-ia32/itrace.so' -- ./stage3 123
+Invalid. Try again.
+$ tail ./itrace.out
+0x804e8fa
+0x806cc21
+0x806cc25
+0x806cc2a
+0xf77dbd70
+0xf77dbd71
+0xf77dbd72
+0xf77dbd73
+0xf77dbd75
+#eof
+$ 
+</code></pre>
+
+<p>　先ほどにはなかった「0x804e8fa」などのメモリ領域を実行していることが分かります。<br>
+　gdbでブレークポイントをこのアドレスに仕掛けようとすると失敗します。しかし、ハードウェアブレークポイントであれば可能です。（ただし、実行中でないとハードウェアブレークポイントは仕掛けられないことに注意）  </p>
+
+<pre><code>b *0xc454f8
+r
+hbreak *0x804e8fa
+c
+i proc map
+
+    Start Addr   End Addr       Size     Offset objfile
+      0xc01000   0xc02000     0x1000        0x0 ./stage3
+     0x8048000  0x80e9000    0xa1000        0x0 
+     0x80e9000  0x810f000    0x26000        0x0 [heap]
+    0xf7ffb000 0xf7ffc000     0x1000        0x0 [vdso]
+    0xf7ffc000 0xf7ffe000     0x2000        0x0 [vvar]
+    0xfffdd000 0xffffe000    0x21000        0x0 [stack]
+</code></pre>
+
+<p>　0x8048000以降のメモリが確保され、実際に実行されていることが確認できました。<br>
+　ここで、gdb上で「dump binary memory stage3_2 0x8048000 0x810efff」と入力すると、unpackされたstage3のバイナリがstage3_2というファイルにダンプできます。ようやくプログラム本体のreversingの開始です。<br>
+　逆アセンブルを解析すると、main関数が0x8049067にあること、さらに0x8048ffdが入力文字列のチェック関数であることが分かります。<br>
+　チェック関数は、ざっくり解説すると<br>
+「文字数が16文字であることを確認する」<br>
+「5文字目と12文字目が"-"であることを確認する」<br>
+「最後に連続して４つの関数（0x8048f9f、0x8048f3e、0x8048e90、0x8048e24）を実行する」<br>
+　という流れになっています。この最後の４つの関数がくせ者。いずれもそれほど長くない関数なので、ハンドデコンパイルします。<br>
+　（ここでデコンパイルをサボってしまうと嵌まります。IDA Proがあれば、この手間はいらないのかも知れませんが……）<br>
+  このバイナリはlibcをstatic linkしているため惑わされやすいですが、とりあえず関係なさそうな関数は後で解析するとして、まず簡単にハンドデコンパイルすると、流れが見えてきます。  </p>
+
+<pre><code>// 0x8048f9f
+for (v8 = 0;v8 &lt; 4; v8++)
+{
+    for(v4 = 0;v4 &lt; 4;v4++)
+    {
+    edx = v8*4 + v4;
+    0x80ec030[edx] = [ebp+0x8][edx]
+    }
+}
+// [ebp+0x8]には、入力文字列「XXXX-XXXXXX-XXXX」が入っている
+// 0x80ec030以降16bytesに入力文字列をコピーする
+
+//0x8048f3e
+for (v8 = 0;v8 &lt; 4; v8++)
+{
+    sub_804eb90(0x2df);
+    for(v4 = 0;v4 &lt; 4;v4++)
+    {
+    edx = v8*4 + v4;
+    0x80ec020[edx] = sub_804f120();
+    }
+}
+// sub_804eb90は恐らくsrand、sub_804f120は恐らくrand
+// sub_804eb90に渡す数字を変えると、sub_804f120の出力も変わる
+// rand()のデータを0x80ec020以降16bytesにコピーする
+
+//0x8048e90
+for (v10 = 0; v10 &lt; 4; v10++)
+{
+    for(vc = 0;vc &lt; 4;vc++)
+    {
+        for(v8=0;v8 &lt; 4;v8++)
+        {
+        0x80eb05c[ vc + v10 * 4 ] = 0x80eb05c[ vc + v10 * 4 ] + 0x80ec020[ v8 + v10*4 ] * 0x80ec030[vc + v8 * 4]
+        }
+    }
+}
+// 0x80ec020と0x80ec030を元にして、上記の計算式で0x80eb05c以降16bytesを生成する。
+// 最後に、0x8048e24で、生成された0x80eb05cをハードコードされた回答0x80ea068と比較して終了。
+</code></pre>
+
+<p>　この結果から、生成された0x80eb05cが、0x80ea068と同じになればOKということが分かります。<br>
+　ここで、0x80eb05cの1,5,9,13文字目は、入力文字列1,5,9,13文字目と連動して変わります（入力文字列が１文字変わるだけで、４文字全てが変わります）<br>
+　同様に、0x80eb05cの2,6,10,14文字目は、入力文字列2,6,10,14文字目に対応します。<br>
+　さらに、アマゾンギフト券に使われる文字は"-1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"だけのようです。<br>
+　gdbのダンプから、0x80ec020に入っているデータも分かります。  </p>
+
+<pre><code>r 1234-123456-1234
+x/s 0x80ec020
+0x80ec020:  "%\223@\356\a\r\265\365!|:\247\362\222\360e1234-123456-1234("
+x/50wx 0x80ec020
+0x80ec020:  0xee409325  0xf5b50d07  0xa73a7c21  0x65f092f2
+(snip)
+gdb-peda$ x/s 0x80ea068
+0x80ea068:  "\320?&gt;\b[7y\036F\341\020P\261\346s\247"
+</code></pre>
+
+<p>　ここまで分かれば、4文字ごとのブルートフォースで答えを割り出せることが分かります。最大でも4*(37^4) = 7496644通りの組み合わせの中に正解が存在するはずですので、十分に可能な範囲です。<br>
+　実際のコードは以下のようになります。  </p>
+
+<pre><code>data = "\320?&gt;\b[7y\036F\341\020P\261\346s\247"
+
+ans = [" "] * 16
+possible = "-1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+m = [[37,147,64,238],[7,13,181,245],[33,124,58,167],[242,146,240,101]] # from 0x80ec020
+
+for now in range(0,4):
+ flag = 0
+ for a in possible:
+  if flag == 1:
+    break
+  for b in possible:
+    if flag == 1:
+      break
+    for c in possible:
+      if flag == 1:
+        break
+      for d in possible:
+        q = [0] * 4
+        for z in range(0,4):
+          q[z] = m[z][0] * ord(a) + m[z][1] * ord(b) + m[z][2] * ord(c) + m[z][3] * ord(d)
+          q[z] = q[z] % 256
+        if q[0] == ord(data[0+now]) and q[1] == ord(data[4+now]) and q[2] == ord(data[8+now]) and q[3] == ord(data[12+now]):
+          print a,b,c,d
+          ans[0+now] = a
+          ans[4+now] = b
+          ans[8+now] = c
+          ans[12+now] = d
+          flag = 1
+          break
+
+print "".join(ans)
+</code></pre>
+
+<p>　そして、結果は……。</p>
+
+<pre><code>7 - X U
+M Z Z H
+S 7 R S
+5 W - S
+7MS5-Z7WXZR-UHSS
+</code></pre>
+
+<p>　確かめてみましょう。</p>
+
+<pre><code>$ ./stage3 7MS5-Z7WXZR-UHSS
+Congrats! You got the amazon code.
+</code></pre>
+
+<p>　ようやく到達！お疲れ様でした。</p>
+
+<h2>
+<a id="" class="anchor" href="#" aria-hidden="true"><span class="octicon octicon-link"></span></a>　</h2>
+
+<p>　もっとうまいやり方もあるかも知れません。解けた方のwriteup、期待しています。<br>
+　年始より楽しいCTFでした。ふるかわ（<a href="https://twitter.com/_N4NU_" class="user-mention">@_N4NU_</a>）さん、ありがとうございました！</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>

